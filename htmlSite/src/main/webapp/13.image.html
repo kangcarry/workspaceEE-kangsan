@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="UTF-8" />	
+	<title>image 요소 연습</title>
+</head>
+<!-- 
+	img : 이미지태그
+	  - src속성 : image uri
+ -->
+<body>
+	<h2>절대경로[http://~ 로시작하는경로]</h2><hr>
+	<h4>다른 싸이트에있는 이미지</h4>
+	<div>
+		<img width="80" height="80" src="https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000487]_20210430112319040.jpg" alt= "바닐라크림콜드브루">
+		<img width="80" height="80" src="https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000479]_20210426091843897.jpg">
+		<img width="80" height="80" src="https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000001635]_20210225092236748.jpg">
+		<img width="80" height="80" src="https://image.istarbucks.co.kr/upload/store/skuimg/2022/03/[9200000002672]_20220311105511600.jpg">
+
+	</div>
+	<h4>같은 싸이트에있는 이미지 </h4>
+	<div>
+		<img src="./car1.jpg" width="80" height="80">
+		<img src="./car2.jpg" width="80" height="80">
+		<img src="./car3.jpg" width="80" height="80">
+		<br>
+		<img src="./penguin1.gif" width="80" height="80">
+		<img src="./penguin2.gif" width="80" height="80">
+		<img src="./penguin3.gif" width="80" height="80">
+	</div>
+	<hr>
+	<h2>상대경로[http://~ 로시작하지않는경로]</h2><hr>
+	<h4>같은 싸이트에있는 이미지-->기준경로 [http://localhost/htmlSite/]</h4>
+	<div>
+		<img src="./car1.jpg" width="80" height="80">
+		<img src="./car2.jpg" width="80" height="80">
+		<img src="./car3.jpg" width="80" height="80">
+		<br>
+		<img src="./penguin1.gif" width="80" height="80">
+		<img src="./penguin2.gif" width="80" height="80">
+		<img src="./penguin3.gif" width="80" height="80">
+	</div>
+	<h3>image에 링크(a tag)걸기</h3><br>
+	<div>
+		<a href='/servletSite/LifeCycleCounter.java'><img src='./penguin1.gif' width="80" height="80"></a>	
+		<a href='/servletSite/gugudan.do'><img src='./penguin2.gif' width="80" height="80"></a>	
+		
+		</div>
+</body>
+</html>
+
+
+
+
