@@ -4,10 +4,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	
+	function body_load_function(){
+		/*
+		DOM Tree 생성 후 렌더링 직전에 onload이벤트발생
+		*/
+		console.log("body_load_function()실행!!");
+		window.document.joinForm.id.focus();
+	}
 </script>
 </head>
-<body>
+<body onload="body_load_function();">
 	<h1>
 	자바스크립트이벤트</h1>
 	<hr>
