@@ -22,7 +22,7 @@
 	 AddressService addressService = new AddressService();
 	 
 	 
-	 addressService.update(new Address(0,name,phone,address));
+	 addressService.update(new Address(Integer.parseInt(no),name,phone,address));
 	 
 	 
 	 response.sendRedirect("address_detail.jsp");

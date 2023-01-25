@@ -16,6 +16,10 @@
 	 
 	 request.setCharacterEncoding("UTF-8");
 	 String no = request.getParameter("no");
+	 if(no==null||no==""){
+		 response.sendRedirect("address_main.jsp");
+		 return;
+	 }
 	 AddressService addressService = new AddressService();
 	 Address address =  addressService.findByNo(Integer.parseInt(no));
 	 
