@@ -4,8 +4,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	GuestService guestService=new GuestService();
-	List<Guest> guestList=guestService.findAll();
+	 /*
+	  * 0.요청객체encoding설정
+	  * 1.파라메타받기
+	  * 2.GuestService객체생성
+	  * 3.GuestService객체 selectAll() 메쏘드호출
+	  * 4.ArrayList<Guest> 리스트 출력
+	  */
+	  response.setContentType("text/html;charset=UTF-8");
+	  request.setCharacterEncoding("UTF-8");
+	  GuestService guestService=new GuestService();
+	  List<Guest> guestList = guestService.findAll();
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,9 +39,7 @@
 		<!-- navigation start-->
 		<div id="navigation">
 			<!-- include_common_left.jsp start-->
-			
 			<jsp:include page="include_common_left.jsp"/>
-
 			<!-- include_common_left.jsp end-->
 		</div>
 		<!-- navigation end-->
@@ -60,15 +67,18 @@
 										<td width=120 align=center bgcolor="E6ECDE">날짜</td>
 									</tr>
 									<%for(Guest guest:guestList){ %>
+									<!-- guest start -->
 									<tr>
-										<td width=50 align=center bgcolor="ffffff" height="20"><%=guest.getGuest_no()%></td>
-										<td width=300 bgcolor="ffffff" style="padding-left: 10"><a
-											href="guest_view.jsp?guest_no=43" class="user"><%=guest.getGuest_title()%></a></td>
-										<td width=120 align=center bgcolor="ffffff"><%=guest.getGuest_name()%></td>
-										<td width=120 align=center bgcolor="ffffff"><%=guest.getGuest_date()%></td>
+										<td width=50 align=center bgcolor="ffffff" height="20" name="no"><%=guest.getGuest_no() %></td>
+										<td width=300 bgcolor="ffffff" style="padding-left: 10">
+										<a href="guest_view.jsp?guest_no=43" class="user"> <%=guest.getGuest_title() %> </a></td>
+										<td width=120 align=center bgcolor="ffffff"><%=guest.getGuest_name() %></td>
+										<td width=120 align=center bgcolor="ffffff"><%=guest.getGuest_date() %></td>
 									</tr>
+									<!-- guest end -->
 									<%}%>
 									
+
 
 								</table>
 							</form> <br> <!-- button -->
@@ -86,9 +96,7 @@
 		<!-- footer start-->
 		<div id="footer">
 			<!-- include_common_bottom.jsp start-->
-			
 			<jsp:include page="include_common_bottom.jsp"/>
-
 			<!-- include_common_bottom.jsp end-->
 		</div>
 		<!-- footer end -->

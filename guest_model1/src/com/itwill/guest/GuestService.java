@@ -13,4 +13,7 @@ public class GuestService {
 	public List<Guest> findAll()throws Exception{
 		return guestDao.findAll();
 	}
+	public Guest selectByNo(int no) throws Exception {
+		return guestDao.findByNo(no);
+	}
 }

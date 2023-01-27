@@ -1,13 +1,26 @@
+<%@page import="com.itwill.guest.Guest"%>
+<%@page import="com.itwill.guest.GuestService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 /*
  * 0.요청객체encoding설정
- * 1.파라메타받기
+ * 1.guest_no 파라메타받기
  * 2.GuestService객체생성
- * 3.GuestService객체 selectByNo() 메쏘드호출
+ * 3.GuestService객체 selectByNo(guest_no) 메쏘드호출
  * 4.Guest  출력
  */
+ request.setCharacterEncoding("UTF-8");
+ String no = request.getParameter("no");
+ GuestService guestService = new GuestService();
+ Guest findGuest = guestService.(Integer.parseInt(no));
+ 
+ if(no==null||no==""){
+	 response.sendRedirect("geust_main.jsp");
+	 return;
+ }
+ 
+ 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -63,31 +76,31 @@
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">번호</td>
 										<td width=490 bgcolor="ffffff" align="left"
-											style="padding-left: 10px">25</td>
+											style="padding-left: 10px"><%=findGuest.getGuest_no()%></td>
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">이름</td>
 										<td width=490 bgcolor="ffffff" align="left"
-											style="padding-left: 10px">수정</td>
+											style="padding-left: 10px"><%=findGuest.getGuest_name()%></td>
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">날짜</td>
 										<td width=490 bgcolor="ffffff" align="left"
-											style="padding-left: 10px">2015-03-18</td>
+											style="padding-left: 10px"><%=findGuest.getGuest_date()%></td>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">홈페이지</td>
 										<td width=490 bgcolor="ffffff" align="left"
-											style="padding-left: 10px">xzcxz</td>
+											style="padding-left: 10px"><%=findGuest.getGuest_homepage()%></td>
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">제목</td>
 										<td width=490 bgcolor="ffffff" align="left"
-											style="padding-left: 10px">수정</td>
+											style="padding-left: 10px"><%=findGuest.getGuest_title()%></td>
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="110">내용</td>
 										<td width=490 bgcolor="ffffff" align="left"
-											style="padding-left: 10px">수정ㄴㅁㅇhjkjhhj</td>
+											style="padding-left: 10px"><%=findGuest.getGuest_content()%></td>
 									</tr>
 								</table>
 							</form> <br />
