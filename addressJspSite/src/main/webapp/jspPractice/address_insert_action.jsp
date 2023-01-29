@@ -18,6 +18,6 @@
 	 AddressService addressService = new AddressService();
 	 addressService.insert(new Address(0,name,phone,address));
 	 response.sendRedirect("address_main.jsp");
-	  
+	 
 	 
 	%>

@@ -1,3 +1,5 @@
+<%@page import="com.itwill.guest.Guest"%>
+<%@page import="com.itwill.guest.GuestService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -11,4 +13,24 @@ GET방식이면 guest_main.jsp redirection
 	3.GuestService객체 update(Guest객체) 메쏘드호출
 	4.guest_view.jsp로 redirection
 */
+	if(request.getMethod().equalsIgnoreCase("GET")){
+		response.sendRedirect("guest_main.jsp");
+		return;
+	}
+
+	request.setCharacterEncoding("UTF-8");
+	String guest_no= request.getParameter("guest_no");
+	String guest_name= request.getParameter("guest_name");
+	String guest_email= request.getParameter("guest_email");
+	String guest_homepage= request.getParameter("guest_homepage");
+	String guest_title= request.getParameter("guest_title");
+	String guest_content= request.getParameter("guest_content");
+	
+	GuestService guestService = new GuestService();
+	Guest upguest = guestService.selectByNo(Integer.parseInt(guest_no));
+	Guest guest = new Guest(Integer.parseInt(guest_no),guest_name,upguest.getGuest_date(),guest_email,
+	guest_homepage,guest_title,guest_content);
+	guestService.updateGuest(guest);
+	response.sendRedirect("guest_view.jsp?guest_no="+guest_no);
+
 %>

@@ -16,4 +16,14 @@ public class GuestService {
 	public Guest selectByNo(int no) throws Exception {
 		return guestDao.findByNo(no);
 	}
+	
+	public int updateGuest(Guest guest) throws Exception {
+		return guestDao.update(guest);
+	}
+	public int insertGuest(Guest guest) throws Exception {
+		return guestDao.insert(guest);
+	}
+	public int removeGuest(int guest_no) throws Exception {
+		return guestDao.delete(guest_no);
+	}
 }

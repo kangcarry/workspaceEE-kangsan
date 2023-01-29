@@ -1,3 +1,5 @@
+<%@page import="com.itwill.guest.Guest"%>
+<%@page import="com.itwill.guest.GuestService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -9,6 +11,15 @@
  	3.GuestService객체 findByNo(guest_no) 메쏘드호출
  	4.Guest 데이타를 form의 input element의  value  속성에 출력
 */
+	if(request.getMethod().equalsIgnoreCase("GET")){
+		response.sendRedirect("guest_main.jsp");
+		return;
+	}
+	request.setCharacterEncoding("UTF-8");
+	String guest_no= request.getParameter("guest_no");
+	GuestService guestService = new GuestService();
+	Guest guest = guestService.selectByNo(Integer.parseInt(guest_no));
+	
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -58,47 +69,47 @@
 					</tr>
 				</table> <!-- modify Form  -->
 				<form name="f" method="post">
-					<input type="hidden" name="guest_no" value="25" />
+					<input type="hidden" name="guest_no" value="<%=guest.getGuest_no() %>" />
 					<table border="0" cellpadding="0" cellspacing="1" width="590"
 						bgcolor="BBBBBB">
 						<tr>
 							<td width=100 align=center bgcolor="E6ECDE" height="22">번호</td>
 							<td align="left" width=490 bgcolor="ffffff"
-								style="padding-left: 10px">25</td>
+								style="padding-left: 10px"><%=guest.getGuest_no() %></td>
 						</tr>
 						<tr>
 							<td width=100 align=center bgcolor="E6ECDE" height="22">이름</td>
 							<td align="left" width=490 bgcolor="ffffff"
 								style="padding-left: 10px"><input type="text"
 								style="width: 150" name="guest_name"
-								value="수정"></td>
+								value="<%=guest.getGuest_name()%>"></td>
 						</tr>
 						<tr>
 							<td width=100 align=center bgcolor="E6ECDE" height="22">홈페이지</td>
 							<td align="left" width=490 bgcolor="ffffff"
 								style="padding-left: 10px"><input type="text"
 								style="width: 150" name="guest_homepage"
-								value="xzcxz"></td>
+								value="<%=guest.getGuest_homepage()%>"></td>
 						</tr>
 						<tr>
 							<td width=100 align=center bgcolor="E6ECDE" height="22">이메일</td>
 							<td align="left" width=490 bgcolor="ffffff"
 								style="padding-left: 10px"><input type="text"
 								style="width: 240" name="guest_email"
-								value="수정 "></td>
+								value="<%=guest.getGuest_email()%>"></td>
 						</tr>
 						<tr>
 							<td width=100 align=center bgcolor="E6ECDE" height="22">제목</td>
 							<td align="left" width=490 bgcolor="ffffff"
 								style="padding-left: 10px"><input type="text"
 								style="width: 240" name="guest_title"
-								value="수정 "></td>
+								value="<%=guest.getGuest_title()%>"></td>
 						</tr>
 						<tr>
 							<td width=100 align=center bgcolor="E6ECDE" height="22">내용</td>
 							<td align="left" width=490 bgcolor="ffffff"
 								style="padding-left: 10px"><textarea wrap="soft"
-									style="width: 240px" rows="10" name="guest_content">수정ㄴㅁㅇhjkjhhj</textarea>
+									style="width: 240px" rows="10" name="guest_content"><%=guest.getGuest_content() %></textarea>
 
 							</td>
 						</tr>
