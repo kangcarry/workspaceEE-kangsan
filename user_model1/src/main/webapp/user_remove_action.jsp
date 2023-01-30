@@ -18,9 +18,9 @@
 	}
 	//request.setCharacterEncoding("UTF-8");
 	UserService userService = new UserService();
-	int result = userService.remove(sUserId);
+	userService.remove(sUserId);
 	session.invalidate();  //세션 무효화하기
-	request.getSession(true);
+	request.getSession(true); 
 	response.sendRedirect("user_main.jsp");
 	
 %>
