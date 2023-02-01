@@ -14,7 +14,7 @@ GET방식이면 guest_main.jsp redirection
 	4.guest_view.jsp로 redirection
 */
 	if(request.getMethod().equalsIgnoreCase("GET")){
-		response.sendRedirect("guest_main.jsp");
+		response.sendRedirect(request.getContextPath());
 		return;
 	}
 

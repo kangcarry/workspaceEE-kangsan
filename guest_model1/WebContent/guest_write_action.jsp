@@ -18,6 +18,7 @@ if(request.getMethod().equalsIgnoreCase("GET")){
 	return;
 }
 
+try{
 request.setCharacterEncoding("UTF-8");
 String guest_name = request.getParameter("guest_name");
 String guest_email = request.getParameter("guest_email");
@@ -30,5 +31,9 @@ Guest newGuest = new Guest(0,guest_name,null,guest_email,guest_homepage,guest_ti
 guestService.insertGuest(newGuest);
 
 response.sendRedirect("guest_list.jsp" );
+}catch(Exception e){
+	e.printStackTrace();
+	response.sendRedirect("guest_error.jsp");
+}
 
 %>

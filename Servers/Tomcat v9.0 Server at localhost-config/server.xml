@@ -154,7 +154,7 @@
 
 	
 
-      <Context docBase="addressSite" path="/addressSite" reloadable="true" source="org.eclipse.jst.jee.server:addressSite"/><Context docBase="jspSite" path="/jspSite" reloadable="true" source="org.eclipse.jst.jee.server:jspSite"/><Context docBase="addressJspSite" path="/addressJspSite" reloadable="true" source="org.eclipse.jst.jee.server:addressJspSite"/><Context docBase="javascriptSite" path="/javascriptSite" reloadable="true" source="org.eclipse.jst.jee.server:javascriptSite"/><Context docBase="guest_model1" path="/guest_model1" reloadable="true" source="org.eclipse.jst.jee.server:guest_model1"/><Context docBase="user_model1" path="/user_model1" reloadable="true" source="org.eclipse.jst.jee.server:user_model1"/></Host>
+      <Context docBase="addressSite" path="/addressSite" reloadable="true" source="org.eclipse.jst.jee.server:addressSite"/><Context docBase="jspSite" path="/jspSite" reloadable="true" source="org.eclipse.jst.jee.server:jspSite"/><Context docBase="addressJspSite" path="/addressJspSite" reloadable="true" source="org.eclipse.jst.jee.server:addressJspSite"/><Context docBase="javascriptSite" path="/javascriptSite" reloadable="true" source="org.eclipse.jst.jee.server:javascriptSite"/><Context docBase="guest_model1" path="/guest_model1" reloadable="true" source="org.eclipse.jst.jee.server:guest_model1"/><Context docBase="user_model1" path="/user_model1" reloadable="true" source="org.eclipse.jst.jee.server:user_model1"/><Context docBase="board_comment_model1" path="/board_comment_model1" reloadable="true" source="org.eclipse.jst.jee.server:board_comment_model1"/><Context docBase="board_model1" path="/board_model1" reloadable="true" source="org.eclipse.jst.jee.server:board_model1"/></Host>
     </Engine>
   </Service>
 </Server>

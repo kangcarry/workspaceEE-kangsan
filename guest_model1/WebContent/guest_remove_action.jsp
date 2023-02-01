@@ -11,7 +11,7 @@
 	4.guest_list.jsp로 redirection
 */
 if(request.getMethod().equalsIgnoreCase("GET")){
-	response.sendRedirect("guest_main.jsp");
+	response.sendRedirect(request.getContextPath());
 	return;
 }
 request.setCharacterEncoding("UTF-8");

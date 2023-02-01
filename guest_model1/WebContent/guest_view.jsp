@@ -13,14 +13,33 @@
  request.setCharacterEncoding("UTF-8");
  String guest_no = request.getParameter("guest_no");
  
- if(guest_no==null||guest_no==""){
-	 response.sendRedirect("geust_main.jsp");
+ if(guest_no==null||guest_no.equals("")){
+	 response.sendRedirect(request.getContextPath());
+	 return;
+ }
+ GuestService guestService = new GuestService();
+ Guest guest = guestService.selectByNo(Integer.parseInt(guest_no));
+ try{
+ if(guest==null){
+	 throw new NumberFormatException("guest가 null");
+ }}catch(NumberFormatException e){
+	 e.printStackTrace();
+	 /************case1(redirect)****************
+	 response.sendRedirect("guest_list.jsp");
+	 **********************************/
+	 /***********case2(script)******************/
+	 out.println("<script>");
+	 out.println("alert('존재하지 않는 게시물입니다.');");
+	 out.println("location.href='guest_list.jsp'");
+	 out.println("</script>");
 	 return;
  }
  
- GuestService guestService = new GuestService();
- Guest guest = guestService.selectByNo(Integer.parseInt(guest_no));
-
+ 
+ catch(Exception e){
+	 e.printStackTrace();
+	 response.sendRedirect("guest_error.jsp");
+ }
  
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -101,7 +120,9 @@
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="110">내용</td>
 										<td width=490 bgcolor="ffffff" align="left"
-											style="padding-left: 10px"><%=guest.getGuest_content()%></td>
+											style="padding-left: 10px"><%=guest.getGuest_content()
+																		.replace("\n","<br>")
+																		.replace(">", "&gt;")%></td>
 									</tr>
 								</table>
 							</form> <br />
