@@ -119,7 +119,7 @@ a.m2:hover {
 
 	<br>
 	<br>
-	<form method="POST" action="A.upload_view.jsp"
+	<form method="POST" action="A.upload_action_view.jsp"
 		enctype="multipart/form-data">
 
 		<table border=0 cellpadding=0 cellspacing=0 width=500 align=center>
@@ -160,7 +160,7 @@ a.m2:hover {
 	<br>
 
 
-	<form method="POST" action="A.upload.jsp"
+	<form method="POST" action="A.file_upload_action.jsp"
 		enctype="multipart/form-data">
 
 		<table border=0 cellpadding=0 cellspacing=0 width=500 align=center>
