@@ -4,59 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원 가입</title>
+<link rel="stylesheet" href="css/user.css" type="text/css">
 <style type="text/css">
-	/*
-	tag selector
-	*/
-	body {
-		background-color: gray;
-	}
-	h3{
-		text-align: center;
-	}
-	form{
-		width: 450px;
-		margin: 0px auto 0px auto;
-		background: white;
-		border: 2px solid black;
-	}
-	th{
-		background: #eeeeee;
-		font-size: 8pt;
-	}
-	.TXTFLD{
-		border-width: 1px;
-		border-style: solid;
-		border-color: black;
-	}
-	.TXTFLD1{
-		border-width: 1px;
-		border-style: solid;
-		border-color: blue;
-		color: blue;
-	}
-
-
-	/*
-	id selector
-	*/
 	
-	#jointbl{
-		background-color: teal;
-		width:450px;
-	}
-	#first-tr{
-		color:marron;
-	}
-	#jointbl input[type=submit]{
-		background: pink;
-		border: 1px solid white;
-	}
-	#jointbl input[type=submit]:hover{
-		background: yellow;
-		color: red;
-		border: 2px solid black;
-	}
 </style>
 <script type="text/javascript" src="js/co.js"></script>
 <script type="text/javascript" src="js/member.js"></script>

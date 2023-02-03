@@ -85,7 +85,7 @@
 			</form>
 			<%if(!isDuplicate){ %>
 				<div id="msg" style="font-size: 7pt;margin:7px;text-align: left;color: blue;font-weight: bold"><%=msg %></div>
-				<input id="useBtn" type="button" value="사용"  style="font-size: 7pt" onclick="sendCheckValue()">
+				<input id="useBtn" type="button" disabled="disabled" value="사용"  style="font-size: 7pt" onclick="sendCheckValue()">
 			<%}else{ %>
 				<div id="msg" style="font-size: 7pt;margin:7px;text-align: left;color:red;font-weight: bold"><%=msg %></div>
 				<input id="useBtn"  type="button" disabled="disabled" value="사용"  style="font-size: 7pt;" onclick="sendCheckValue()" >

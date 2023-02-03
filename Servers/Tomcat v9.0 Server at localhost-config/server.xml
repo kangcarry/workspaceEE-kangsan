@@ -154,7 +154,7 @@
 
 	
 
-      <Context docBase="jspSite" path="/jspSite" reloadable="true" source="org.eclipse.jst.jee.server:jspSite"/></Host>
+      <Context docBase="jspSite" path="/jspSite" reloadable="true" source="org.eclipse.jst.jee.server:jspSite"/><Context docBase="web-project-shop-complete" path="/web-project-shop-complete" reloadable="true" source="org.eclipse.jst.jee.server:web-project-shop-complete"/><Context docBase="web-project-shop-template" path="/web-project-shop-template" reloadable="true" source="org.eclipse.jst.jee.server:web-project-shop-template"/></Host>
     </Engine>
   </Service>
 </Server>
