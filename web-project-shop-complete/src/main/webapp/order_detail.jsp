@@ -1,18 +1,18 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="com.itwill.shop.order.OrderItem"%>
-<%@page import="com.itwill.shop.order.Order"%>
-<%@page import="com.itwill.shop.order.OrderService"%>
+<%@page import="com.itwill.shop.orders.OrderItem"%>
+<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.orders.Orders"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf" %>
 <%
-	String o_noStr=request.getParameter("o_no");
+String o_noStr=request.getParameter("o_no");
 	if(o_noStr==null|| o_noStr.equals("")){
 		response.sendRedirect("order_list.jsp");
 		return;
 	}
 	OrderService orderService=new OrderService();
-	Order order = orderService.orderWithOrderItem(Integer.parseInt(o_noStr));
+	Orders order = orderService.orderWithOrderItem(Integer.parseInt(o_noStr));
 %>     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

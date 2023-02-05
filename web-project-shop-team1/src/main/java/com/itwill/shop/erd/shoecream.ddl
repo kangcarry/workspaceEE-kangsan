@@ -34,10 +34,6 @@ CREATE TABLE product(
 		category_no                   		NUMBER(10)		 NULL 
 );
 
-DROP SEQUENCE product_p_no_SEQ;
-
-CREATE SEQUENCE product_p_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
-
 CREATE TABLE orders(
 		o_no                          		NUMBER(10)		 NULL ,
 		o_desc                        		VARCHAR2(100)		 NULL ,

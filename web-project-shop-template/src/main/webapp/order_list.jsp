@@ -3,7 +3,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwill.shop.order.Order"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwill.shop.order.OrderService"%>
+<%@page import="com.itwill.shop.order.Order"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%

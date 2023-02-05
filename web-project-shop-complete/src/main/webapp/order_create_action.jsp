@@ -1,6 +1,6 @@
 <%@page import="com.itwill.shop.cart.CartService"%>
-<%@page import="com.itwill.shop.order.Order"%>
-<%@page import="com.itwill.shop.order.OrderService"%>
+<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.orders.Orders"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf" %>    

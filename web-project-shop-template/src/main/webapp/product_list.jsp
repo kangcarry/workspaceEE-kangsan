@@ -1,15 +1,20 @@
 
+<%@page import="com.itwill.shop.product.Product"%>
+<%@page import="java.util.List"%>
+<%@page import="com.itwill.shop.product.ProductService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-
-
-
-
-
-
-
-	
+<% 
+ProductService productService = new ProductService();
+List<Product> productList = productService.productList();
+%>
+<%
+boolean isLogin = false;
+if(session.getAttribute("sUserId")!=null){
+	isLogin=true;
+}
+%>
 
 
 <!DOCTYPE html>
@@ -21,7 +26,7 @@
 <link rel=stylesheet href="css/shop.css" type="text/css">
 <script type="text/javascript">
 function add_cart_popup_window(f){
-	if (true) {
+	if (<%=!isLogin%>) {
 		alert('로그인 하세요');
 		location.href = 'user_login_form.jsp';
 	} else {
@@ -130,153 +135,38 @@ function add_cart_popup_window(f){
 									
 									<!--상품시작 -->
 									
+									<%
+									int product_size=productList.size();
+									int product_column_size=4;
+									int product_line_count = 1;
+									
+									for(int i = 0;i<product_size;i++){
+										Product product = productList.get(i);
+									
+									%>
+									<%
+									 if(i%product_column_size==0){
+									%>
 									<tr>
-									
+									<%} %>
 										<td align="center" width="25%"  bgcolor="ffffff"><a
-											href="product_detail.jsp?p_no=1"><img width="88px" height="65px"
-												src="image/bigle.png" border="0"></a><br />
+											href="product_detail.jsp?p_no=<%=product.getP_no()%>"><img width="88px" height="65px"
+												src=<%=product.getP_image() %> border="0"></a><br />
 												
-											<br /> <b>견종:비글</b>
+											<br /> <b>견종:<%=product.getP_name() %></b>
 											<form style="display: inline;">
-												<input type="hidden" name="p_no" value="1">
+												<input type="hidden" name="p_no" value=<%=product.getP_no() %>>
 												<input type="hidden" name="cart_qty" value="1">
 												<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>
 											</form><br> <font
-											color="#FF0000">가격:550,000원
+											color="#FF0000"><%=product.getP_price() %>
 										</font></td>
 										
 									
 								   <!--상품 끝 -->
-								   
-									<!--상품시작 -->
-									
-										<td align="center" width="25%"  bgcolor="ffffff"><a
-											href="product_detail.jsp?p_no=2"><img width="88px" height="65px"
-												src="image/dalma.jpg" border="0"></a><br />
-												
-											<br /> <b>견종:달마시안</b>
-											<form style="display: inline;">
-												<input type="hidden" name="p_no" value="2">
-												<input type="hidden" name="cart_qty" value="1">
-												<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>
-											</form><br> <font
-											color="#FF0000">가격:500,000원
-										</font></td>
-										
-									
-								   <!--상품 끝 -->
-								   
-									<!--상품시작 -->
-									
-										<td align="center" width="25%"  bgcolor="ffffff"><a
-											href="product_detail.jsp?p_no=3"><img width="88px" height="65px"
-												src="image/pug.jpg" border="0"></a><br />
-												
-											<br /> <b>견종:퍼그</b>
-											<form style="display: inline;">
-												<input type="hidden" name="p_no" value="3">
-												<input type="hidden" name="cart_qty" value="1">
-												<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>
-											</form><br> <font
-											color="#FF0000">가격:400,000원
-										</font></td>
-										
-									
-								   <!--상품 끝 -->
-								   
-									<!--상품시작 -->
-									
-										<td align="center" width="25%"  bgcolor="ffffff"><a
-											href="product_detail.jsp?p_no=4"><img width="88px" height="65px"
-												src="image/pekiniz.png" border="0"></a><br />
-												
-											<br /> <b>견종:페키니즈</b>
-											<form style="display: inline;">
-												<input type="hidden" name="p_no" value="4">
-												<input type="hidden" name="cart_qty" value="1">
-												<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>
-											</form><br> <font
-											color="#FF0000">가격:450,000원
-										</font></td>
-									
+
 									</tr>
-										
-									
-								   <!--상품 끝 -->
-								   
-									<!--상품시작 -->
-									
-									<tr>
-									
-										<td align="center" width="25%"  bgcolor="ffffff"><a
-											href="product_detail.jsp?p_no=5"><img width="88px" height="65px"
-												src="image/pomeranian.jpg" border="0"></a><br />
-												
-											<br /> <b>견종:포메라니안</b>
-											<form style="display: inline;">
-												<input type="hidden" name="p_no" value="5">
-												<input type="hidden" name="cart_qty" value="1">
-												<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>
-											</form><br> <font
-											color="#FF0000">가격:800,000원
-										</font></td>
-										
-									
-								   <!--상품 끝 -->
-								   
-									<!--상품시작 -->
-									
-										<td align="center" width="25%"  bgcolor="ffffff"><a
-											href="product_detail.jsp?p_no=6"><img width="88px" height="65px"
-												src="image/shaipei.jpg" border="0"></a><br />
-												
-											<br /> <b>견종:샤페이</b>
-											<form style="display: inline;">
-												<input type="hidden" name="p_no" value="6">
-												<input type="hidden" name="cart_qty" value="1">
-												<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>
-											</form><br> <font
-											color="#FF0000">가격:700,000원
-										</font></td>
-										
-									
-								   <!--상품 끝 -->
-								   
-									<!--상품시작 -->
-									
-										<td align="center" width="25%"  bgcolor="ffffff"><a
-											href="product_detail.jsp?p_no=7"><img width="88px" height="65px"
-												src="image/dachshund.jpg" border="0"></a><br />
-												
-											<br /> <b>견종:닥스훈트</b>
-											<form style="display: inline;">
-												<input type="hidden" name="p_no" value="7">
-												<input type="hidden" name="cart_qty" value="1">
-												<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>
-											</form><br> <font
-											color="#FF0000">가격:800,000원
-										</font></td>
-										
-									
-								   <!--상품 끝 -->
-								   
-									<!--상품시작 -->
-									
-										<td align="center" width="25%"  bgcolor="ffffff"><a
-											href="product_detail.jsp?p_no=8"><img width="88px" height="65px"
-												src="image/samoyed.jpg" border="0"></a><br />
-												
-											<br /> <b>견종:사모예드</b>
-											<form style="display: inline;">
-												<input type="hidden" name="p_no" value="8">
-												<input type="hidden" name="cart_qty" value="1">
-												<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>
-											</form><br> <font
-											color="#FF0000">가격:800,000원
-										</font></td>
-									
-									</tr>
-										
+									<%} %>
 									
 								   <!--상품 끝 -->
 								   	

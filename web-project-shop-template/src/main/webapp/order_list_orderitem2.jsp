@@ -1,3 +1,4 @@
+<%@page import="com.itwill.shop.order.OrderService"%>
 <%@page import="com.itwill.shop.product.Product"%>
 <%@page import="com.itwill.shop.order.OrderItem"%>
 <%@page import="java.util.List"%>
@@ -5,7 +6,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwill.shop.order.Order"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwill.shop.order.OrderService"%>
+<%@page import="com.itwill.shop.order.Order"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf"%>
@@ -74,8 +75,7 @@ List<Order> orderList = orderService.orderWithOrderItemList(sUserId);
 									<!-- order start -->
 									<%
 									for (Order order : orderList) {
-										List<OrderItem> ordeItemList=order.getOrderItemList();
-										
+																	List<OrderItem> ordeItemList=order.getOrderItemList();
 									%>
 									<tr>
 										<td colspan="6" height=24 align=left bgcolor="E6ECDE" class=t1 >
