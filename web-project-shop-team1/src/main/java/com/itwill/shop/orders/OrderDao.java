@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
+import java.util.List;
 import java.util.logging.Logger;
 
 import com.itwill.shop.common.DataSource;
@@ -76,7 +77,13 @@ public class OrderDao {
 	/*
 	 * 주문전체보기
 	 */
-	
+	public List<Orders> selectAll(String user_Id){
+		Connection con =
+		
+		
+		
+		return null;
+	}
 	/*
 	 * 주문1개상세보기(난이도최상)
 	 */

@@ -161,15 +161,12 @@ function add_cart_popup_window(f){
 											</form><br> <font
 											color="#FF0000"><%=product.getP_price() %>
 										</font></td>
-										
-									
+									<%if(i%product_column_size==3){%>
 								   <!--상품 끝 -->
-
 									</tr>
 									<%} %>
-									
 								   <!--상품 끝 -->
-								   	
+								   	<%} %>
 								</table>
 							</div> <br /></td>
 					</tr>
