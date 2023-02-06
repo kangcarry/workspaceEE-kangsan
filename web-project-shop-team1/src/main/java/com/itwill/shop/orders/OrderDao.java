@@ -98,7 +98,7 @@ public class OrderDao {
 	}
 	
 	/*
-	 * 주문+주문아이템전체(특정사용자) 수정바람(상세보기원인)
+	 * 주문+주문아이템전체(특정사용자)
 	 */
 	public List<Orders> findOrderWithOrdersItemByUserId(String user_id) throws Exception{
 		List<Orders> orderList = this.findOrdersByUserId(user_id);
@@ -113,30 +113,35 @@ public class OrderDao {
 	
 	
 	/*
-	 * 주문1개상세보기(주문상세리스트,난이도 최상) 수정바람!
+	 * 주문1개상세보기(주문상세리스트,난이도 최상)
 	 */
 	public Orders findByOrdersNo(int o_no) throws Exception {
 		Orders orders = null;
+		List<OrderItem> orderList=new ArrayList<OrderItem>();
 		Connection con = datasource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(OrderSQL.ORDER_SELECT_WITH_ORDERITEM_BY_O_NO);
 		pstmt.setInt(1, o_no);
 		ResultSet rs = pstmt.executeQuery();
+		
 		if(rs.next()) {
 			orders = new Orders(rs.getInt("o_no"),
 								rs.getString("o_desc"),
 								rs.getDate("o_date"),
 								rs.getInt("o_price"),
-								rs.getString("user_id"));
+								rs.getString("user_id"),
+								orderList);
 			do {
 			orders.getOrderItemList().
 								add(new OrderItem(rs.getInt("oi_no"),
 												  rs.getInt("oi_qty"),
+												  rs.getInt("o_no"),
 												  new Product(rs.getInt("p_no"),
 															  rs.getString("p_name"),
 															  rs.getInt("p_price"),
 															  rs.getString("p_image"),
-															  rs.getString("p_desc")
-														  	  ),rs.getInt("o_no")
+															  rs.getString("p_desc"),
+															  rs.getInt("p_click_count"),
+															  rs.getInt("category_no"))
 												 ));
 			}while(rs.next());
 		} 

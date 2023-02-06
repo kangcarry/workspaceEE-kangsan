@@ -2,6 +2,7 @@ package com.itwill.shop.orders.test;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.shop.orders.OrderDao;
@@ -31,13 +32,14 @@ public class OrderDaoTestMain {
 		/*
 		 * 주문생성 (주문 1개 + 주문아이템 1개 이상) - 트랜잭션 처리 필요.
 		 */
-		/*
-		Orders newOrders = new Orders(0, "shoes외6종", null, 55555, "cream1");
-		newOrders.getOrderItemList().add(new OrderItem(0, 2, new Product(1, "네이키", 44444, null, "쌉니다"), 0));
-		newOrders.getOrderItemList().add(new OrderItem(0, 3, new Product(2, "나이키", 45555, null, "쌉니다"), 0));
+		List<OrderItem> orderItemList = new ArrayList<OrderItem>();
+		Orders newOrders = new Orders(0, "shoes외6종", null, 55555, "cream1",orderItemList);
+		newOrders.getOrderItemList().add(new OrderItem(0, 2, 0,new Product(1, "네이키", 44444, null, "쌉니다",0,0)
+			));
+		newOrders.getOrderItemList().add(new OrderItem(0, 3, 0,new Product(2, "나이키", 45555, null, "쌉니다",0,0)));
 		rowCount = orderDao.insert(newOrders);
-		System.out.println(orderDao.deleteByO_no(rowCount)+"개의 주문 생성");
-		*/
+		System.out.println(rowCount+"개의 주문 생성");
+		
 		
 		/*
 		 * 주문 전체조회 (기본내용)
@@ -48,10 +50,10 @@ public class OrderDaoTestMain {
 		/*
 		 * 주문 전체조회 (상세내용)
 		 */
-//		List<Orders> findorder = orderDao.findOrderWithOrdersItemByUserId("cream3");
-//		for (int i=0;i<findorder.size();i++) {
-//			findorder.get(i).getOrderItemList().get(rowCount);
-//		}
+		List<Orders> findorder = orderDao.findOrderWithOrdersItemByUserId("cream3");
+		for (Orders orders : findorder) {
+			System.out.println(orders);
+		}
 		
 		/*
 		 * 주문 1개 조회 (상세내용)

@@ -22,12 +22,12 @@ public class OrderItem {
 		
 	}
 
-	public OrderItem(int oi_no, int oi_qty, Product product, int o_no) {
+	public OrderItem(int oi_no, int oi_qty, int o_no,Product product) {
 		super();
 		this.oi_no = oi_no;
 		this.oi_qty = oi_qty;
-		this.product = product;
 		this.o_no = o_no;
+		this.product = product;
 	}
 
 	public int getOi_no() {
