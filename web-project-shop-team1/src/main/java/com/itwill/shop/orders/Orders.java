@@ -35,7 +35,7 @@ public class Orders {
 	}
 	
 
-	public Orders(int o_no, String o_desc, Date o_date, int o_price, String user_id) {
+	public Orders(int o_no, String o_desc, Date o_date, int o_price, String user_id,List<OrderItem> orderItemList) {
 		super();
 		this.o_no = o_no;
 		this.o_desc = o_desc;
@@ -43,6 +43,16 @@ public class Orders {
 		this.o_price = o_price;
 		this.user_id = user_id;
 		this.orderItemList = orderItemList;
+	}
+	
+	
+	public Orders(int o_no, String o_desc, Date o_date, int o_price, String user_id) {
+		super();
+		this.o_no = o_no;
+		this.o_desc = o_desc;
+		this.o_date = o_date;
+		this.o_price = o_price;
+		this.user_id = user_id;
 	}
 	
 	public int getO_no() {

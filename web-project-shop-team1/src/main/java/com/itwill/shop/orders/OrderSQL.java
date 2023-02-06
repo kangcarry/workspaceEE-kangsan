@@ -11,7 +11,9 @@ public class OrderSQL {
 			"delete orders where o_no = ?";
 	public final static String OREDRS_SELECT_BY_USER_ID = 
 			"select * from orders where user_id = ?";
-	public final static String ORDER_SELECT_WITH_ORDERITEM_PRODUCT_BY_M_ID_O_NO =
-			"select * from orders o join order_item oi on o.o_no = oi.o_no join product p on oi.p_no = p.p_no where m_id = ? and o.o_no = ?";
+	public final static String ORDER_SELECT_WITH_ORDERITEM_BY_O_NO =
+			"select * from orders o join order_item oi on o.o_no=oi.o_no  join  product p on oi.p_no=p.p_no where o.o_no = ?";
+	public final static String ORDER_SELECT_WITH_ORDERITEM_BY_USERID =
+			"select * from orders o join order_item oi on o.o_no=oi.o_no  join  product p on oi.p_no=p.p_no where  o.userid = ? ";
 	
 }

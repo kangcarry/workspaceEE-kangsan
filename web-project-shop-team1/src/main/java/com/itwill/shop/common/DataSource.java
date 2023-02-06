@@ -28,7 +28,7 @@ public class DataSource {
 		properties.load(propertiesInput); 
 		this.driverClass = properties.getProperty("driverClass");
 		this.url = properties.getProperty("url");
-		this.user = properties.getProperty("user");
+		this.user = properties.getProperty("username");
 		this.password = properties.getProperty("password");
 	}
 	/*

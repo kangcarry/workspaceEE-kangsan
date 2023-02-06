@@ -5,12 +5,16 @@ package com.itwill.shop.orders;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
 import com.itwill.shop.common.DataSource;
+import com.itwill.shop.product.Product;
 
 
 public class OrderDao {
@@ -33,11 +37,11 @@ public class OrderDao {
 		
 		PreparedStatement pstmt2 =con.prepareStatement(OrderSQL.OREDRITEM_INSERT);
 		for (OrderItem orderItem : order.getOrderItemList()) {
+			pstmt2.clearParameters();
 			pstmt2.setInt(1, orderItem.getOi_qty());
 			pstmt2.setInt(2, orderItem.getProduct().getP_no());
 			pstmt2.executeUpdate();
 		}
-		
 		pstmt1.close();
 		pstmt2.close();
 		return rowCount;
@@ -77,14 +81,68 @@ public class OrderDao {
 	/*
 	 * 주문전체보기
 	 */
-	public List<Orders> selectAll(String user_Id){
-		Connection con =
+	public List<Orders> findOrdersByUserId(String user_Id) throws Exception{
+		Connection con = datasource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(OrderSQL.OREDRS_SELECT_BY_USER_ID);
 		
-		
-		
-		return null;
+		pstmt.setString(1, user_Id);
+		List<Orders> ordersList = new <Orders> ArrayList();
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			ordersList.add(new Orders(rs.getInt("o_no"),rs.getString("o_desc"),rs.getDate("o_date"),rs.getInt("o_price"),rs.getString("user_id")));
+		}
+
+		pstmt.close();
+		con.close();
+		return ordersList;
 	}
+	
 	/*
-	 * 주문1개상세보기(난이도최상)
+	 * 주문+주문아이템전체(특정사용자) 수정바람(상세보기원인)
 	 */
+	public List<Orders> findOrderWithOrdersItemByUserId(String user_id) throws Exception{
+		List<Orders> orderList = this.findOrdersByUserId(user_id);
+		for(int i=0; i<orderList.size(); i++) {
+		Orders orders = orderList.get(i);
+		Orders orderWithOrdersItem = this.findByOrdersNo(orders.getO_no());
+		orderList.set(i, orderWithOrdersItem);
+		}
+		return orderList;
+	}
+	
+	
+	
+	/*
+	 * 주문1개상세보기(주문상세리스트,난이도 최상) 수정바람!
+	 */
+	public Orders findByOrdersNo(int o_no) throws Exception {
+		Orders orders = null;
+		Connection con = datasource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(OrderSQL.ORDER_SELECT_WITH_ORDERITEM_BY_O_NO);
+		pstmt.setInt(1, o_no);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			orders = new Orders(rs.getInt("o_no"),
+								rs.getString("o_desc"),
+								rs.getDate("o_date"),
+								rs.getInt("o_price"),
+								rs.getString("user_id"));
+			do {
+			orders.getOrderItemList().
+								add(new OrderItem(rs.getInt("oi_no"),
+												  rs.getInt("oi_qty"),
+												  new Product(rs.getInt("p_no"),
+															  rs.getString("p_name"),
+															  rs.getInt("p_price"),
+															  rs.getString("p_image"),
+															  rs.getString("p_desc")
+														  	  ),rs.getInt("o_no")
+												 ));
+			}while(rs.next());
+		} 
+		pstmt.close();
+		con.close();
+		return orders;
+	}
+	
 }
