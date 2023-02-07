@@ -1,63 +1,55 @@
 package com.itwill.shop.orders.test;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itwill.shop.orders.*;
+import com.itwill.shop.orders.Order;
 import com.itwill.shop.orders.OrderDao;
 import com.itwill.shop.orders.OrderItem;
-import com.itwill.shop.orders.Orders;
-import com.itwill.shop.product.Product;
-
+import com.itwill.shop.product.*;
 
 public class OrderDaoTestMain {
 
 	public static void main(String[] args) throws Exception {
-		OrderDao orderDao = new OrderDao();
-		int rowCount = 0;
+		OrderDao ordersDao = new OrderDao();
 		
+		System.out.println("------ insert -------");
+		// 테스트 완료
+		
+		// 직접 주문
+		ProductDao productDao = new ProductDao();
+		Product product1 = productDao.selectByNo(1);
+		System.out.println(ordersDao.insert(new Order(0, product1.getP_name(), null, product1.getP_price(), "cream3")));
+		
+		// 직접 주문 여러건
+		Product product2 = productDao.selectByNo(6);
+		Product product3 = productDao.selectByNo(7);
+		
+		List<OrderItem> orderItemList1 = new ArrayList<OrderItem>();
+		orderItemList1.add(new OrderItem(0, 3, 0, product2));
+		orderItemList1.add(new OrderItem(0, 2, 0, product3));
+		
+		System.out.println(ordersDao.insert(new Order(0, product2.getP_name() + "외 1건", null, 100000, "cream3")));
+		
+		System.out.println("------ delete by user_id -------");
 		/*
-		 * 주문전체삭제 (회원아이디)
-		 */
-		rowCount = orderDao.deleteByUserId("cream2");
-		System.out.println(rowCount+"개의 아이디주문 삭제");
-		
-		/*
-		 * 주문 1건 삭제 (주문번호)
-		 */
-		rowCount = 4;
-		System.out.println(orderDao.deleteByO_no(rowCount)+"개의 주문 삭제");
-		
-		/*
-		 * 주문생성 (주문 1개 + 주문아이템 1개 이상) - 트랜잭션 처리 필요.
-		 */
-		List<OrderItem> orderItemList = new ArrayList<OrderItem>();
-		Orders newOrders = new Orders(0, "shoes외6종", null, 55555, "cream1",orderItemList);
-		newOrders.getOrderItemList().add(new OrderItem(0, 2, 0,new Product(1, "네이키", 44444, null, "쌉니다",0,0)
-			));
-		newOrders.getOrderItemList().add(new OrderItem(0, 3, 0,new Product(2, "나이키", 45555, null, "쌉니다",0,0)));
-		rowCount = orderDao.insert(newOrders);
-		System.out.println(rowCount+"개의 주문 생성");
-		
-		
-		/*
-		 * 주문 전체조회 (기본내용)
+		System.out.println(ordersDao.deleteByUserId("cream3"));
 		 */
 		
-		System.out.println(orderDao.findOrdersByUserId("cream1"));
-		
+		System.out.println("------ delete by o_no -------");
 		/*
-		 * 주문 전체조회 (상세내용)
+		 System.out.println(ordersDao.deleteByOrderNo(6));
 		 */
-		List<Orders> findorder = orderDao.findOrderWithOrdersItemByUserId("cream3");
-		for (Orders orders : findorder) {
-			System.out.println(orders);
-		}
 		
-		/*
-		 * 주문 1개 조회 (상세내용)
-		 */
-		System.out.println(orderDao.findByOrdersNo(3));
-	}		
+		System.out.println("------ select by user_id -------");
+		System.out.println(ordersDao.findByUserId("cream2"));
+		
+		System.out.println("------ select with orderitem by user_id -------");
+		System.out.println(ordersDao.findWithOrderItemByUserId("cream2"));
+		
+		System.out.println("------ select with orderitem by o_no -------");
+		System.out.println(ordersDao.findWithOrderItemByOrderNo(2));
+	}
+
 }

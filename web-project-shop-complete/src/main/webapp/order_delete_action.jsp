@@ -1,4 +1,4 @@
-<%@page import="com.itwill.shop.orders.OrderService"%>
+<%@page import="com.itwill.shop.orders.OrderService_kangsan"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf"%>
@@ -14,7 +14,7 @@ if (request.getMethod().equalsIgnoreCase("GET")) {
 	return;
 }
 String o_noStr = request.getParameter("o_no");
-OrderService orderService = new OrderService();
+OrderService_kangsan orderService = new OrderService_kangsan();
 orderService.deleteByOrderNo(Integer.parseInt(o_noStr));
 response.sendRedirect("order_list.jsp");
 %>

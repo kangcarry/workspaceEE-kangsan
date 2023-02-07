@@ -1,17 +1,17 @@
 <%@page import="com.itwill.shop.product.Product"%>
-<%@page import="com.itwill.shop.orders.OrderItem"%>
+<%@page import="com.itwill.shop.orders.OrderItem_kangsan"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.orders.Orders_kangsan"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.orders.Orders_kangsan"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf"%>
 <%
-OrderService orderService = new OrderService();
-List<Orders> orderList = orderService.orderWithOrderItemList(sUserId);
+DeliveryService orderService = new DeliveryService();
+List<Orders_kangsan> orderList = orderService.orderWithOrderItemList(sUserId);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -73,8 +73,8 @@ List<Orders> orderList = orderService.orderWithOrderItemList(sUserId);
 									cellspacing="1">
 									<!-- order start -->
 									<%
-									for (Orders order : orderList) {
-																	List<OrderItem> ordeItemList=order.getOrderItemList();
+									for (Orders_kangsan order : orderList) {
+																																													List<OrderItem_kangsan> ordeItemList=order.getOrderItemList();
 									%>
 									<tr>
 										<td colspan="6" height=24 align=left bgcolor="E6ECDE" class=t1 >
@@ -96,10 +96,10 @@ List<Orders> orderList = orderService.orderWithOrderItemList(sUserId);
 												<tr >
 													<%
 													int orderItemSize = ordeItemList.size();
-													int remainSize=8-orderItemSize;
-													for(int j=0;j<orderItemSize;j++){
-														OrderItem orderItem=ordeItemList.get(j);
-														Product product=orderItem.getProduct();
+																																			int remainSize=8-orderItemSize;
+																																			for(int j=0;j<orderItemSize;j++){
+																																				OrderItem_kangsan orderItem=ordeItemList.get(j);
+																																				Product product=orderItem.getProduct();
 													%>
 													<!--상품시작 -->
 													<td align="center" style="padding: 0px;width: 55px" bgcolor="ffffff"><a style="padding: 0px"

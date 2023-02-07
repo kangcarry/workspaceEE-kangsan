@@ -1,15 +1,15 @@
 <%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.orders.Orders_kangsan"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.orders.Orders_kangsan"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf"%>
 <%
-OrderService orderService = new OrderService();
-List<Orders> orderList = orderService.orderList(sUserId);
+DeliveryService orderService = new DeliveryService();
+List<Orders_kangsan> orderList = orderService.orderList(sUserId);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -78,7 +78,7 @@ List<Orders> orderList = orderService.orderList(sUserId);
 
 									<!-- order start -->
 									<%
-									for (Orders order : orderList) {
+									for (Orders_kangsan order : orderList) {
 									%>
 									<tr>
 										<td width=145 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>

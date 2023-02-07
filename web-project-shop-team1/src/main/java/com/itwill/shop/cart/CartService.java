@@ -44,13 +44,15 @@ public class CartService {
 	/*
 	 * view
 	 */
-	public List<Cart> viewCartItem(String sUserId) throws Exception{
+	//전체 출력
+	public List<Cart> viewCartByUserId(String sUserId) throws Exception{
 		return cartDao.findByUserId(sUserId);
 	}
 	
-	
-	
-	
+	//카트 번호로 출력
+		public Cart viewCartByCartNo(int cart_no) throws Exception{
+			return cartDao.findByCartNo(cart_no);
+	}
 	
 
 }

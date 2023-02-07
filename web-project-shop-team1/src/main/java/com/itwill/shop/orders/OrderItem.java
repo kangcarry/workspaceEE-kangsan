@@ -2,27 +2,28 @@ package com.itwill.shop.orders;
 
 import com.itwill.shop.product.Product;
 
-/*
- * 이름     널?       유형         
+public class OrderItem {
+	/*
+	이름     널?       유형         
 	------ -------- ---------- 
 	OI_NO  NOT NULL NUMBER(10) 
 	OI_QTY          NUMBER(10) 
-	P_NO            NUMBER(10) 
 	O_NO            NUMBER(10) 
- */
-public class OrderItem {
+	P_NO            NUMBER(10) 	
+	 */
+	
 	private int oi_no;
 	private int oi_qty;
-	/******Product포함******/
-	private Product product;
-	/*******FK********/
+	
+	/********** FK **********/
 	private int o_no;
+	private Product product;
 	
 	public OrderItem() {
 		
 	}
 
-	public OrderItem(int oi_no, int oi_qty, int o_no,Product product) {
+	public OrderItem(int oi_no, int oi_qty, int o_no, Product product) {
 		super();
 		this.oi_no = oi_no;
 		this.oi_qty = oi_qty;
@@ -46,14 +47,6 @@ public class OrderItem {
 		this.oi_qty = oi_qty;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
 	public int getO_no() {
 		return o_no;
 	}
@@ -62,8 +55,17 @@ public class OrderItem {
 		this.o_no = o_no;
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderItem [oi_no=" + oi_no + ", oi_qty=" + oi_qty + ", product=" + product + ", o_no=" + o_no + "]\n";
+		return "Order_item [oi_no=" + oi_no + ", oi_qty=" + oi_qty + ", o_no=" + o_no + ", product=" + product + "]\n";
 	}
+	
 }

@@ -1,7 +1,7 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="com.itwill.shop.orders.OrderItem"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.orders.OrderItem_kangsan"%>
+<%@page import="com.itwill.shop.orders.Orders_kangsan"%>
+<%@page import="com.itwill.shop.orders.Orders_kangsan"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf" %>
@@ -11,8 +11,8 @@ String o_noStr=request.getParameter("o_no");
 		response.sendRedirect("order_list.jsp");
 		return;
 	}
-	OrderService orderService=new OrderService();
-	Orders order = orderService.orderWithOrderItem(Integer.parseInt(o_noStr));
+	DeliveryService orderService=new DeliveryService();
+	Orders_kangsan order = orderService.orderWithOrderItem(Integer.parseInt(o_noStr));
 %>     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -107,8 +107,8 @@ form > table tr td{
 									<!-- orer item start -->
 									<%
 									int tot_price=0;
-																for(OrderItem orderItem:order.getOrderItemList()) {
-																tot_price+=orderItem.getOi_qty()*orderItem.getProduct().getP_price();
+																														for(OrderItem_kangsan orderItem:order.getOrderItemList()) {
+																														tot_price+=orderItem.getOi_qty()*orderItem.getProduct().getP_price();
 									%>
 									<tr>
 										<td width=290 height=26 align=center  bgcolor="ffffff" class=t1>
