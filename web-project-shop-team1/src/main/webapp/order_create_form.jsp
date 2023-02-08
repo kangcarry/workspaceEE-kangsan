@@ -75,28 +75,24 @@ form > table tr td{
 		document.order_create_form.action = 'order_create_action.jsp';
 		document.order_create_form.submit();
 	}
-	function changeAddress(){
-        window.open("<%= request.getContextPath() %>/member/memberSsn.jsp", "member", "width=640, height=400"
-			<form>
-        table align=center width=80% border="0" cellpadding="0"
-			cellspacing="1" bgcolor="BBBBBB">
-			<caption style="text-align: left;">배송지 정보</caption>
-			<tr>
-				<td width=290 height=25 align=center bgcolor="E6ECDE" class=t1>받으시는 분</td>
-				<td width=112 height=25 align=center bgcolor="E6ECDE" class=t1>연락처</td>
-				<td width=166 height=25 align=center bgcolor="E6ECDE" class=t1>이메일</td>
-				<td width=50 height=25 align=center bgcolor="E6ECDE" class=t1>배송지</td>
-			</tr>
-			<tr>
-					<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_name()%></td>
-					<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_phone()%></td>
-					<td width=150 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_email()%></td>
-					<td width=150 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_address()%></td>
-			</tr>
-		</table>
-       		 </form>	
-        		)
-    }
+	
+	function promptAddress(){
+		
+		document.address_modify.method = 'POST';
+		document.address_modify.action = 'address_update_action.jsp';
+		document.address_modify.submit();
+	}
+	
+	
+	function addressUpdateAction() {
+		if(window.confirm('주소를 변경하시겠습니까? 변경하시면 기본배송지로 설정됩니다')){
+			let address1 = prompt("배송지를 입력하세요");
+			
+			$('input[name=address]').attr('value',address1);
+		alert("주소가 변경되었습니다.");
+	}
+	}
+	
 </script>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
@@ -125,7 +121,6 @@ form > table tr td{
 		<!-- navigation start-->
 		<div id="navigation">
 			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp" />
 			<!-- include_common_left.jsp end-->
 		</div>
 		<!-- navigation end-->
@@ -222,16 +217,28 @@ form > table tr td{
 											<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_name()%></td>
 											<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_phone()%></td>
 											<td width=150 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_email()%></td>
-											<td width=150 height=26 align=center bgcolor="ffffff" class=t1 >
-											<select name ="o_option" id="o_option">
-										  <option selected> 배송주소선택 </option>
-										  <%=for(Delivery delivery :deliveryList){ %>
-										  <option> <%=delivery.getD_address() %> </option>
-										  <%} %>
-										 </select></td>
-										<a href = "javascript:changeAddress()">배송지변경</a>
-									</tr>
+											<td width=150 height=26 align=center bgcolor="ffffff" class=t1>
+                                 <select name="d_address">
+                                  <option value="0">배송지 선택</option>
+                                 <% for(Delivery delivery : deliveryList) { %>
+                                    <%int i = 0; %>
+                                 <option value="<%=i++%>" 
+                                 <% if(delivery.getD_address()==delivery.getD_address()){%>
+                                 selected
+                                 <%}%>>
+                                 <%=delivery.getD_address() %></option>
+                                    
+                                    <%} %>   
+                                    
+                                    
+                        
+                              
+                              
+                              </select>
+                              </td>
+											
 								</table>
+							
 							</form>
 							<br />
 							<table border="0" cellpadding="0" cellspacing="1" width="590">

@@ -76,7 +76,7 @@ public class DeliveryDao {
 					rs.getString("d_address"),
 					rs.getString("d_phone"),
 					rs.getString("d_name"),
-					rs.getString(user_id)));
+					rs.getString("user_id")));
 		}}
 		catch (Exception e) {
 			e.getMessage();

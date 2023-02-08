@@ -9,6 +9,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Program Files/2022-11-JAVA-DEVELOPER/git-repositories-home/workspaceEE-kangsan/web-project-shop-team1/src/main/webapp/WEB-INF/lib/tomcat-juli-9.0.10.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/2022-11-JAVA-DEVELOPER/git-repositories-home/workspaceEE-kangsan/web-project-shop-team1/src/main/webapp/WEB-INF/lib/tomcat-juli-9.0.10.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
