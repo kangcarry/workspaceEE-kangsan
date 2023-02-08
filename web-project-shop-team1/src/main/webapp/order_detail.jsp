@@ -1,19 +1,23 @@
-
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.itwill.shop.order.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="login_check.jspf"%>
 <%
+OrderService orderService = new OrderService();
+List<Order> orderList = orderService.findByUserId(sUserId);
+List<OrderItem> orderItemList = new ArrayList<OrderItem>();
 
-%>     
+String o_noStr = request.getParameter("o_no");
+Order thisOrder = orderService.findWithOrderItemByOrderNo(Integer.parseInt(o_noStr));
 
+// 화폐단위 구분을 위해 numberFormat 설정
+NumberFormat numberFormat = NumberFormat.getInstance();
+%>
 
-
-
-
-
-
-
-  
-     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,72 +44,10 @@ form > table tr td{
 		<!-- header start -->
 		<div id="header">
 			<!-- include_common_top.jsp start-->
-		    
-
-
-
-
-		
-<div id="menu">
-	<ul>
-		<li id="logo"><a href="shop_main.jsp"></a></li>
-		
-			<li id="mypage" title="나의페이지" ><a href="user_view.jsp"></a></li>
-			<li id="cart" title="장바구니"><span class="w3-badge w3-green w3-margin-right">3</span><a href="cart_view_select_update_qyt_all_check_delete_image.jsp"></a></li>
-			
-		
-	</ul>
-</div>
-<h1>
-	<a href=""></a>
-</h1>
-
+			<jsp:include page="include_common_top.jsp"/>
 			<!-- include_common_top.jsp end-->
 		</div>
 		<!-- header end -->
-		<!-- navigation start-->
-		<div id="navigation">
-			<!-- include_common_left.jsp start-->
-			
-
-
-
-
-	
-<script type="text/javascript">
-	function login_message() {
-		alert('로그인하세요');
-		location.href = 'user_login_form.jsp';
-	}
-</script>
-<p>
-	<strong>메 뉴</strong>
-</p>
-<ul>
-		
-		<li><a href="user_view.jsp">김경호1님</a></li>
-		<li><a href="user_logout_action.jsp">로그아웃</a></li>
-		<li></li>
-		<li><a href="cart_view.jsp">장바구니[전체주문]<span class="w3-badge w3-badge-menu w3-green cart_item_count">3</span></a></li>
-		<li><a href="cart_view_select.jsp">장바구니[선택주문]<span class="w3-badge w3-badge-menu w3-green cart_item_count">3</span></a></li>
-		<li><a href="cart_view_select_update_qty.jsp">장바구니[수량변경]<span class="w3-badge w3-badge-menu w3-green cart_item_count">3</span></a></li>
-		<li><a href="cart_view_select_update_qyt_all_check_delete_image.jsp">장바구니[최종완성]<span class="w3-badge w3-badge-menu w3-green cart_item_count">3</span></a></li>
-		<li><a href=""></a></li>
-		<li><a href="order_list.jsp">주문목록</a></li>
-		<li><a href="order_list_orderitem1.jsp">주문+아이템 목록1</a></li>
-		<li><a href="order_list_orderitem2.jsp">주문+아이템 목록2</a></li>
-		
-	
-		<li><a href="product_list.jsp">상품리스트</a></li>
-		<li><a href=""></a></li>
-		<li><a href="board_list.jsp">게시판리스트</a></li>
-		<li><a href="board_write.jsp">게시판쓰기</a></li>
-		
-</ul>
-
-			<!-- include_common_left.jsp end-->
-		</div>
-		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
@@ -118,8 +60,7 @@ form > table tr td{
 							<table style="padding-left: 10px" border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
-											주문상세조회</b></td>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b><%= sUserId %>님의 주문 상세 조회</b></td>
 								</tr>
 							</table> <!--form-->
 							<form name="f" method="post" action="order_delete_action.jsp">
@@ -139,9 +80,9 @@ form > table tr td{
 									
 									
 									<tr>
-										<td width=290 height=26 align=center bgcolor="ffffff" class=t1>18</td>
-										<td width=112 height=26 align=center bgcolor="ffffff" class=t1>2023-01-31</td>
-										<td width=166 height=26 align=center bgcolor="ffffff" class=t1>guard1</td>
+										<td width=290 height=26 align=center bgcolor="ffffff" class=t1><%= thisOrder.getO_no() %></td>
+										<td width=112 height=26 align=center bgcolor="ffffff" class=t1><%=new SimpleDateFormat("yyyy/MM/dd").format(thisOrder.getO_date()) %></td>
+										<td width=166 height=26 align=center bgcolor="ffffff" class=t1><%= sUserId %></td>
 										
 										<td width=50 height=26 align=center bgcolor="ffffff" class=t1>
 												<input type="submit" value="삭제">
@@ -153,52 +94,45 @@ form > table tr td{
 								<table align=center  width=80% border="0" cellpadding="0" cellspacing="1"  bgcolor="BBBBBB" >
 									<caption style="text-align: left;">주문제품목록</caption>
 									<tr style="border: 0.1px solid">
-										<td width=290 height=25 align=center bgcolor="E6ECDE" class=t1>강아지 이름</td>
+										<td width=290 height=25 align=center bgcolor="E6ECDE" class=t1>상품 이미지</td>
+										<td width=290 height=25 align=center bgcolor="E6ECDE" class=t1>상품명</td>
 										<td width=112 height=25 align=center bgcolor="E6ECDE" class=t1>수 량</td>
 										<td width=166 height=25  align=center bgcolor="E6ECDE" class=t1>가 격</td>
 										<td width=50 height=25  align=center bgcolor="E6ECDE" class=t1>비 고</td>
 									</tr>
 									
-									<!-- orer item start -->
+									<!-- order item start -->
 									
+									<% 
+									int tot_price = 0;
+									for(OrderItem orderItem : thisOrder.getOrderItemList()) { 
+									tot_price = orderItem.getOi_qty() * orderItem.getProduct().getP_price();
+									%>
 									<tr>
-										<td width=290 height=26 align=center  bgcolor="ffffff" class=t1>
-										<a href='product_detail.jsp?p_no=3'>
-										퍼그</a>
+										<td width=290 height=50 align=center  bgcolor="ffffff" class=t1>
+										<%= orderItem.getProduct().getP_image() %>
+										</td>
+										<td width=290 height=50 align=center  bgcolor="ffffff" class=t1>
+										<a href='product_detail.jsp?p_no= <%= orderItem.getProduct().getP_no() %>'><%= orderItem.getProduct().getP_name() %></a>
 										</td>
 										
-										<td width=112 height=26 align=center  bgcolor="ffffff" class=t1>
-										2
-										</td>
+										<td width=110 height=26 align=center  bgcolor="ffffff" class=t1><%= orderItem.getOi_qty() %></td>
 										
-										<td width=166 height=26 align=center bgcolor="ffffff" class=t1>
-										800,000
-										</td>
-										<td width=50 height=26 align=center class=t1 bgcolor="ffffff"></td>
+										<td width=150 height=26 align=center bgcolor="ffffff" class=t1><%= numberFormat.format(tot_price) %></td>
+										<td width=60 height=26 align=center class=t1 bgcolor="ffffff"></td>
 									</tr>
+									<% }
+									
+									String order_tot_price = numberFormat.format(thisOrder.getO_price());
+									%>
+									
+									<!-- order item end -->
 									
 									<tr>
-										<td width=290 height=26 align=center  bgcolor="ffffff" class=t1>
-										<a href='product_detail.jsp?p_no=4'>
-										페키니즈</a>
-										</td>
-										
-										<td width=112 height=26 align=center  bgcolor="ffffff" class=t1>
-										8
-										</td>
-										
-										<td width=166 height=26 align=center bgcolor="ffffff" class=t1>
-										3,600,000
-										</td>
-										<td width=50 height=26 align=center class=t1 bgcolor="ffffff"></td>
-									</tr>
-									
-									<!-- cart item end -->
-									<tr>
-										<td width=640 colspan=4 height=26  bgcolor="ffffff" class=t1>
+										<td width=640 colspan=5 height=26  bgcolor="ffffff" class=t1>
 										
 											<p align=right style="padding-top: 10px">
-												<font color=#FF0000>총 주문 금액 : 4,400,000.0 원
+												<font color=#FF0000>TOTAL : <%= order_tot_price %> 원
 												</font>
 											</p>
 										</td>
@@ -212,7 +146,6 @@ form > table tr td{
 										class=m1>주문목록</a>
 										&nbsp;&nbsp;<a href=product_list.jsp
 										class=m1>계속 쇼핑하기</a>
-
 									</td>
 								</tr>
 							</table></td>
@@ -225,10 +158,7 @@ form > table tr td{
 		<!--wrapper end-->
 		<div id="footer">
 			<!-- include_common_bottom.jsp start-->
-			
-	<p align="center">Copyright (&copy;) By Java Class 5. All
-		rights reserved.</p>
-
+			<jsp:include page="include_common_bottom.jsp"/>
 			<!-- include_common_bottom.jsp end-->
 		</div>
 	</div>

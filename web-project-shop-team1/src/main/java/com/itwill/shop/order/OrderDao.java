@@ -1,4 +1,4 @@
-package com.itwill.shop.orders;
+package com.itwill.shop.order;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

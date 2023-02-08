@@ -23,6 +23,7 @@
 <script src="js/user.js"></script>
 <script type="text/javascript">
 
+//아이디 유효성 체크 및 중복체크
 function idCheck() {
 	const idCheck = /^[a-zA-Z][a-zA-Z0-9]{4,10}$/g;
 	let userIdList = new Array();
@@ -43,8 +44,6 @@ function idCheck() {
 		document.getElementById('id_span').style.color = "blue";
 		return true;
 	}
-
-	
 }
 </script>
 </head>
@@ -59,13 +58,6 @@ function idCheck() {
 			<!-- include_common_top.jsp end-->
 		</div>
 		<!-- header end -->
-		<!-- navigation start-->
-		<div id="navigation">
-			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp"/>
-			<!-- include_common_left.jsp end-->
-		</div>
-		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->

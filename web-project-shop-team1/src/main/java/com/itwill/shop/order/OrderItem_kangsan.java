@@ -1,4 +1,4 @@
-package com.itwill.shop.orders;
+package com.itwill.shop.order;
 
 import com.itwill.shop.product.Product;
 

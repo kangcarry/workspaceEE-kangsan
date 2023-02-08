@@ -1,4 +1,4 @@
-package com.itwill.shop.orders;
+package com.itwill.shop.order;
 
 import java.awt.event.ItemListener;
 import java.util.ArrayList;

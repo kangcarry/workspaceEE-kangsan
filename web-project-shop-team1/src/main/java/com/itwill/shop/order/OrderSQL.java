@@ -1,4 +1,4 @@
-package com.itwill.shop.orders;
+package com.itwill.shop.order;
 
 public class OrderSQL {
 	public static final String ORDERS_INSERT= 

@@ -9,14 +9,14 @@
 		return;
 	}
 	
-	String cart_qtyStr = request.getParameter("cart_qty");
-	String p_noStr = request.getParameter("p_no");
+	String cart_qty = request.getParameter("cart_qty");
+	String p_no = request.getParameter("p_no");
 	
 	CartService cartService = new CartService();
-	Cart cart = new Cart(0,sUserId,Integer.parseInt(cart_qtyStr),
-				new Product(Integer.parseInt(p_noStr),null,0,null,null,0,0));
-			
-	cartService.addCart(cart);
+   	cartService.addCart(new Cart(0,sUserId,Integer.parseInt(cart_qty),
+   			new Product(Integer.parseInt(p_no),null,0,null,null,0,0)));
+   	
+   	
 %>
 
 <!DOCTYPE html>

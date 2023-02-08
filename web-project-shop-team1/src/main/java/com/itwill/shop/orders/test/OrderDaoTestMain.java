@@ -3,10 +3,7 @@ package com.itwill.shop.orders.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.itwill.shop.orders.*;
-import com.itwill.shop.orders.Order;
-import com.itwill.shop.orders.OrderDao;
-import com.itwill.shop.orders.OrderItem;
+import com.itwill.shop.order.*;
 import com.itwill.shop.product.*;
 
 public class OrderDaoTestMain {

@@ -1,5 +1,5 @@
-<%@page import="com.itwill.shop.product.ProductService"%>
 <%@page import="com.itwill.shop.product.Product"%>
+<%@page import="com.itwill.shop.product.ProductService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -82,13 +82,16 @@ if (product == null) {
 			<!-- include_common_top.jsp end-->
 		</div>
 		<!-- header end -->
+
 		<!-- navigation start-->
 		<div id="navigation">
 			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp" />
+	
+			
 			<!-- include_common_left.jsp end-->
 		</div>
 		<!-- navigation end-->
+
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
@@ -176,6 +179,18 @@ if (product == null) {
 										<input type="button" class="w-btn w-btn-indigo" value="상품목록" onClick="productList();"></td>
 								</tr>
 							</table>
+								<!-- review start -->
+				<form name="f" method="post">
+					<table align=center width=80% border="0" cellpadding="0"
+						cellspacing="1" bgcolor="BBBBBB">
+
+						<tr>
+							<td width=145 height=25 bgcolor="E2E2E2" align=center class=t1><font>작성자</font></td>
+							<td width=145 height=25 bgcolor="E2E2E2" align=center class=t1><font>제목</font></td>
+							<td width=112 height=25 bgcolor="E2E2E2" align=center class=t1><font>작성날짜</font></td>
+							
+
+						</tr>
 					</tr>
 				</table>
 			</div>
@@ -190,5 +205,8 @@ if (product == null) {
 		</div>
 	</div>
 	<!--container end-->
+
+
+					
 </body>
 </html>

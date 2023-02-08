@@ -1,7 +1,6 @@
 package com.itwill.shop.orders.test;
 
-import com.itwill.shop.orders.*;
-import com.itwill.shop.orders.OrderService;
+import com.itwill.shop.order.*;
 
 public class OrderServiceTestMain {
 

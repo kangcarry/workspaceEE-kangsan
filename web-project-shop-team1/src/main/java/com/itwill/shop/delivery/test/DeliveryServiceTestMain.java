@@ -17,6 +17,10 @@ public class DeliveryServiceTestMain {
 		
 		//배송정보삭제
 		System.out.println(deliveryService.deleteDelivery("cream1")+"개의 배송정보 삭제");
+		
+		//배송정보 1개 가져오기
+		System.out.println(deliveryService.select("cream2_office"));
+		
 	}
 
 }

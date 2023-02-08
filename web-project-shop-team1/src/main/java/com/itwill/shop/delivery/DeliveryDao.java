@@ -5,6 +5,8 @@ package com.itwill.shop.delivery;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -34,14 +36,24 @@ public class DeliveryDao {
 	
 	public int insertDelivery (String d_address,String d_phone,String d_name,String user_id) throws Exception {
 		int rowCount = 0;
-		Connection con = datasource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(DeliverySQL.DELIVERY_INSERT);
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+		con = datasource.getConnection();
+		pstmt = con.prepareStatement(DeliverySQL.DELIVERY_INSERT);
 		pstmt.setString(1, d_address);
 		pstmt.setString(2, d_phone);
 		pstmt.setString(3, d_name);
 		pstmt.setString(4, user_id);
 		rowCount = pstmt.executeUpdate();
-		con.close();
+		}catch (Exception e) {
+			e.getMessage();
+		}
+		finally {
+			if(con != null) {
+			con.close();
+			}
+		}
 		return rowCount;
 	}
 	
@@ -49,18 +61,57 @@ public class DeliveryDao {
 	 * 주문창에서 배송정보 가져오기
 	 */
 	
-	public Delivery selectDeliveryByuserId (String user_id) throws Exception {
-		Connection con = datasource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(DeliverySQL.DELIVERY_SELECT_BY_USER_ID);
+	public List<Delivery> selectDeliveryByuserId (String user_id) throws Exception {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		List<Delivery> deliverieList = new ArrayList<Delivery>();
+		try {
+		con = datasource.getConnection();
+		pstmt = con.prepareStatement(DeliverySQL.DELIVERY_SELECT_BY_USER_ID);
 		pstmt.setString(1, user_id);
 		ResultSet rs = pstmt.executeQuery();
+	
+		while(rs.next()){
+			deliverieList.add(new Delivery(
+					rs.getString("d_address"),
+					rs.getString("d_phone"),
+					rs.getString("d_name"),
+					rs.getString(user_id)));
+		}}
+		catch (Exception e) {
+			e.getMessage();
+		}
+		finally {
+			if(con != null) {
+			con.close();
+			}
+		}
+		return deliverieList;
+	}
+	
+	public Delivery selectDeliveryByAddress (String d_address) throws Exception {
+		Connection con=null;
+		PreparedStatement pstmt=null;
 		Delivery delivery = new Delivery();
+		try {
+		con = datasource.getConnection();
+		pstmt = con.prepareStatement(DeliverySQL.DELIVERY_SELECT_BY_D_ADDRESS);
+		pstmt.setString(1, d_address);
+		ResultSet rs = pstmt.executeQuery();
+	
 		if(rs.next()){
-		delivery.setD_address(rs.getString("d_address"));
-		delivery.setD_phone(rs.getString("d_phone"));
-		delivery.setD_name(rs.getString("d_name"));
-		delivery.setUser_id(user_id);
-		con.close();
+			delivery= new Delivery(
+					rs.getString("d_address"),
+					rs.getString("d_phone"),
+					rs.getString("d_name"),
+					rs.getString("user_id"));
+		}}catch (Exception e) {
+			e.getMessage();
+		}
+		finally {
+			if(con != null) {
+			con.close();
+			}
 		}
 		return delivery;
 	}
@@ -90,11 +141,21 @@ public class DeliveryDao {
 	
 	public int deleteDelivery (String user_id) throws Exception {
 		int rowCount = 0;
-		Connection con = datasource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(DeliverySQL.DELIVERY_DELETE_BY_USER_ID);
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+		con = datasource.getConnection();
+		pstmt = con.prepareStatement(DeliverySQL.DELIVERY_DELETE_BY_USER_ID);
 		pstmt.setString(1, user_id);
 		rowCount = pstmt.executeUpdate();
-		con.close();
+		}catch (Exception e) {
+			e.getMessage();
+		}
+		finally {
+			if(con != null) {
+			con.close();
+			}
+		}
 		return rowCount;
 	}
 	

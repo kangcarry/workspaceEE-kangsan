@@ -23,24 +23,15 @@
 	<div id="container">
 		<!-- header start -->
 		<div id="header">
-			<!-- include_common_top.jsp start-->
 			<jsp:include page="include_common_top.jsp"/>
-			<!-- include_common_top.jsp end-->
 		</div>
 		<!-- header end -->
-		<!-- navigation start-->
-		<div id="navigation">
-			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp"/>
-			<!-- include_common_left.jsp end-->
-		</div>
-		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
-			<!-- content start -->
-
-			<!-- include_content.jsp start-->
-			<div id="content">
+			<div id="user_navigation">
+				<jsp:include page="user_view_left.jsp"/>
+			</div>
+			<div id="user_content">
 				<table border=0 cellpadding=0 cellspacing=0>
 					<tr>
 						<td>
@@ -100,15 +91,12 @@
 					</tr>
 				</table>
 			</div>
-			
-			<!-- include_content.jsp end-->
+
 			<!-- content end -->
 		</div>
 		<!--wrapper end-->
 		<div id="footer">
-			<!-- include_common_bottom.jsp start-->
 			<jsp:include page="include_common_bottom.jsp"/>
-			<!-- include_common_bottom.jsp end-->
 		</div>
 	</div>
 	<!--container end-->

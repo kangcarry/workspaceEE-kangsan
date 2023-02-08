@@ -30,7 +30,7 @@ public class ProductDao {
 	/*
 	 * 카테고리별 상품 검색
 	 */
-	public List<Product> findByCategory(int category_no) throws Exception {
+	public List<Product> selectByCategory(int category_no) throws Exception {
 		List<Product> productList=new ArrayList<Product>();
 		Connection con=dataSource.getConnection();
 		PreparedStatement pstmt=con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_CATEGORY);

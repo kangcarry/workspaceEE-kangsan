@@ -1,21 +1,29 @@
-<%@page import="com.itwill.shop.product.ProductService"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.itwill.shop.product.Product"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="com.itwill.shop.product.ProductService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
 <%
-ProductService productService = new ProductService();
-List<Product> productList = productService.productList();
-%>
-<%
 boolean isLogin = false;
-if (session.getAttribute("sUserId") != null) {
+String sUserId=(String)session.getAttribute("s_u_id");
+if (session.getAttribute("s_u_id") != null) {
 	isLogin = true;
 }
+String category_noStr=request.getParameter("category_no");
+if(category_noStr==null)category_noStr="0";
+
+ProductService productService = new ProductService();
+List<Product> productList = null;
+if(category_noStr.equals("0")){
+	productList=productService.productList();
+}else{
+	productList=productService.productCategory(Integer.parseInt(category_noStr));
+}
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +37,9 @@ function add_cart_popup_window(f){
 		alert('로그인 하세요');
 		location.href = 'user_login_form.jsp';
 	} else {
-		var left = Math.ceil(( window.screen.width)/5);
-		var top = Math.ceil(( window.screen.height)/3); 
-		console.log(left);
-		console.log(top);
-		var cartWin = window.open("about:blank","cartForm","width=260,height=130,top="+top+",left="+left+",location=no, directories=no, status=no, menubar=no, scrollbars=no,copyhistory=no");
+		let left = Math.ceil(( window.screen.width)/5);
+		let top = Math.ceil(( window.screen.height)/3); 
+		let cartWin = window.open("about:blank","cartForm","width=260,height=130,top="+top+",left="+left+",location=no, directories=no, status=no, menubar=no, scrollbars=no,copyhistory=no");
 		f.action = 'cart_add_action_popup_window.jsp';
 		f.target = 'cartForm';
 		f.method = 'POST';
@@ -56,13 +62,6 @@ function add_cart_popup_window(f){
 			<!-- include_common_top.jsp end-->
 		</div>
 		<!-- header end -->
-		<!-- navigation start-->
-		<div id="navigation">
-			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp" />
-			<!-- include_common_left.jsp end-->
-		</div>
-		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
@@ -100,17 +99,16 @@ function add_cart_popup_window(f){
 									<%} %>
 										<td align="center" width="25%"  bgcolor="ffffff"><a
 											href="product_detail.jsp?p_no=<%=product.getP_no()%>"><img width="88px" height="65px"
-												src="image/<%=product.getP_image()%>" border="0"></a><br />
+												src="image/product_image/<%=product.getP_image()%>" border="0"></a><br />
 												
-											<br /> <b><%=product.getP_name()%></b><br>
+											<br /> <b><%=product.getP_name()%></b>
 											<form style="display: inline;">
 												<input type="hidden" name="p_no" value="<%=product.getP_no()%>">
 												<input type="hidden" name="cart_qty" value="1">
-												<font color="#FF0000">￦<%=new DecimalFormat("#,##0").format(product.getP_price())%>
-												</font><br>
 												<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>
-											</form><br> 
-												</td>
+											</form><br> <font
+											color="#FF0000">가격:<%=new DecimalFormat("#,##0").format(product.getP_price())%>원
+										</font></td>
 									<%if(i%product_column_size==3){%>
 									</tr>
 									<%} %>	

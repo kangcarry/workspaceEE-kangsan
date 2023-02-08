@@ -5,9 +5,9 @@ package com.itwill.shop.orders.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.itwill.shop.orders.OrderDao_kangsan;
-import com.itwill.shop.orders.OrderItem_kangsan;
-import com.itwill.shop.orders.Orders_kangsan;
+import com.itwill.shop.order.OrderDao_kangsan;
+import com.itwill.shop.order.OrderItem_kangsan;
+import com.itwill.shop.order.Orders_kangsan;
 import com.itwill.shop.product.Product;
 
 

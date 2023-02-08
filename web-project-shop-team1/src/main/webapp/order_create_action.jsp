@@ -1,7 +1,8 @@
-<%@page import="com.itwill.shop.orders.OrderService"%>
+<%@page import="com.itwill.shop.user.UserService"%>
+<%@page import="com.itwill.shop.order.OrderService"%>
 <%@page import="com.itwill.shop.cart.CartService"%>
-<%@page import="com.itwill.shop.orders.Order"%>
-<%@page import="com.itwill.shop.orders.Order"%>
+<%@page import="com.itwill.shop.order.Order"%>
+<%@page import="com.itwill.shop.order.Order"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf" %>    
@@ -16,8 +17,10 @@
                             	String buyType=request.getParameter("buyType");
                             	String p_noStr=request.getParameter("p_no");
                             	String p_qtyStr=request.getParameter("p_qty");
+                            	String add_select=request.getParameter("add_select");
                             	String[] cart_item_no_strArray=request.getParameterValues("cart_item_no");
                             	
+								
                             	OrderService orderService=new OrderService();
                             	CartService cartService=new CartService();
                             	if(buyType.equals("cart")){

@@ -1,18 +1,17 @@
-<%@page import="com.itwill.shop.orders.OrderService"%>
 <%@page import="com.itwill.shop.product.Product"%>
-<%@page import="com.itwill.shop.orders.OrderItem"%>
+<%@page import="com.itwill.shop.order.OrderItem"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.itwill.shop.orders.Order"%>
+<%@page import="com.itwill.shop.order.Order"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwill.shop.orders.Order"%>
+<%@page import="com.itwill.shop.order.OrderService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf"%>
 <%
 OrderService orderService = new OrderService();
-List<Order> orderList = orderService.findByUserId(sUserId);
+List<Order> orderList = orderService.findWithOrderItemByUserId(sUserId);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -46,13 +45,7 @@ List<Order> orderList = orderService.findByUserId(sUserId);
 			<!-- include_common_top.jsp end-->
 		</div>
 		<!-- header end -->
-		<!-- navigation start-->
-		<div id="navigation">
-			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp" />
-			<!-- include_common_left.jsp end-->
-		</div>
-		<!-- navigation end-->
+
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
@@ -77,7 +70,7 @@ List<Order> orderList = orderService.findByUserId(sUserId);
 										<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문이름</font></td>
 										<td width=112 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문날짜</font></td>
 										<td width=136 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문가격</font></td>
-										<td width=80 height=25 bgcolor="E6ECDE" align=center class=t1><font></font></td>
+										<td width=80 height=25 bgcolor="E6ECDE" align=center class=t1><font>비고</font></td>
 									</tr>
 									<!-- order start -->
 									<%
@@ -89,6 +82,13 @@ List<Order> orderList = orderService.findByUserId(sUserId);
 										<td width=112 height=26 align=center bgcolor="ffffff" class=t1><%=new SimpleDateFormat("yyyy/MM/dd").format(order.getO_date())%></td>
 										<td width=136 height=26 align=center bgcolor="ffffff" class=t1><%=new DecimalFormat("#,###").format(order.getO_price())%></td>
 										<td width=80 height=26 align=center bgcolor="ffffff" class=t1></td>
+									</tr>
+									<tr>
+										<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>상품 정보</font></td>
+										<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>상품 정보</font></td>
+										<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>상품 정보</font></td>
+										<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>상품 정보</font></td>
+										<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>상품 정보</font></td>
 									</tr>
 										<%
 											for(OrderItem orderItem:order.getOrderItemList()) {

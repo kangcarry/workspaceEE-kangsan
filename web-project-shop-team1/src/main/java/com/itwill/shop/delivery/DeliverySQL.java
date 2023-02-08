@@ -7,6 +7,8 @@ public class DeliverySQL {
 			"delete delivery where user_id = ?";
 	public final static String DELIVERY_SELECT_BY_USER_ID = 
 			"select * from delivery where user_id = ?";
+	public final static String DELIVERY_SELECT_BY_D_ADDRESS = 
+			"select * from delivery where d_address = ?";
 	public final static String DELIVERY_UPDATE =
 			"update delivery set d_address=?, d_phone=? d_name=? where user id=?";
 }

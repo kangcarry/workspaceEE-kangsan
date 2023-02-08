@@ -5,6 +5,7 @@ public class Delivery {
 	private String d_address;
 	private String d_phone;
 	private String d_name;
+	//fk
 	private String user_id;
 
 	public Delivery() {

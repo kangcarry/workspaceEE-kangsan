@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.shop.cart.Cart;
-import com.itwill.shop.orders.OrderDao_kangsan;
-import com.itwill.shop.orders.OrderItem_kangsan;
-import com.itwill.shop.orders.OrderService_kangsan;
-import com.itwill.shop.orders.Orders_kangsan;
+import com.itwill.shop.order.OrderDao_kangsan;
+import com.itwill.shop.order.OrderItem_kangsan;
+import com.itwill.shop.order.OrderService_kangsan;
+import com.itwill.shop.order.Orders_kangsan;
 import com.itwill.shop.product.Product;
 
 
@@ -20,7 +20,7 @@ public class OrderServiceTestMain_kangsan {
 		
 		
 		//상품리스트에서 직접 주문(테스트성공)
-//		System.out.println(orderService.createOrderByProductList("cream1", 1, 3)+"번 주문성공");
+		System.out.println(orderService.createOrderByProductList("cream1", 1, 3)+"번 주문성공");
 		
 		//카트에서 전체주문(테스트성공)
 //		System.out.println(orderService.createOrderByCartAll("cream1"));

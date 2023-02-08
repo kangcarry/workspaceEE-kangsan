@@ -1,4 +1,4 @@
-<%@page import="com.itwill.shop.orders.OrderService_kangsan"%>
+<%@page import="com.itwill.shop.order.OrderService_kangsan"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf"%>

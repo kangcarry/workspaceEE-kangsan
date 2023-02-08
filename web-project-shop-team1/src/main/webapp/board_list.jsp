@@ -63,13 +63,6 @@ String sUserId = (String)session.getAttribute("sUserId");
 			<!-- include_common_top.jsp end-->
 		</div>
 		<!-- header end -->
-		<!-- navigation start-->
-		<div id="navigation">
-			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp" />
-			<!-- include_common_left.jsp end-->
-		</div>
-		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
@@ -121,16 +114,6 @@ String sUserId = (String)session.getAttribute("sUserId");
 										<td width=70 align=center bgcolor="ffffff" align="left"><%=board.getBoard_readCount()%>
 										</td>
 									</tr>
-									<!-- 
-									<tr>
-										<td width=280 bgcolor="ffffff" style="padding-left: 10"><a
-											href='board_view.jsp?boardno=532&pageno=6'>게시판타이틀514</a></td>
-										<td width=120 align=center bgcolor="ffffff">김경호514</td>
-										<td width=120 bgcolor="ffffff" style="padding-left: 10">2014-12-23
-										</td>
-										<td width=70 align=center bgcolor="ffffff">0</td>
-									</tr>
-									 -->
 									<%
 										}
 									%>
@@ -167,7 +150,8 @@ String sUserId = (String)session.getAttribute("sUserId");
 							</table> <!-- button -->
 							<table border="0" cellpadding="0" cellspacing="1" width="590">
 								<tr>
-									<td align="right"><input type="button" value="게시물 생성"
+									<td align="center"><input type="text" value=""></td>
+									<td align="right" width= 60px><input type="button" value="게시물 생성"
 										onclick="boardCreate();" /></td>
 								</tr>
 							</table></td>

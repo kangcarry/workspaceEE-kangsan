@@ -9,16 +9,15 @@
     		return;
     	}
 
-    	String cart_qtyStr = request.getParameter("cart_qty");
-    	String cart_noStr = request.getParameter("cart_no");
+    	String cart_qty = request.getParameter("cart_qty");
+    	String cart_no = request.getParameter("cart_no");
     	
     	CartService cartService = new CartService();
-    	Cart cart = new Cart(Integer.parseInt(cart_noStr),null,Integer.parseInt(cart_qtyStr),null);
-    	if(cart_qtyStr.equals("0")){
-    		cartService.deleteCartItemByCartNo(Integer.parseInt(cart_noStr));
+    	Cart cart = new Cart(Integer.parseInt(cart_no),null,Integer.parseInt(cart_qty),null);
+    	if(cart_qty.equals("0")){
+    		cartService.deleteCartItemByCartNo(Integer.parseInt(cart_no));
     	}else{
     		cartService.updateCart(cart);
     	}
-    	
     	response.sendRedirect("cart_view.jsp");
     %>

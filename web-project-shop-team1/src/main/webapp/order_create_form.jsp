@@ -33,9 +33,9 @@ UserService userService = new UserService();
 ProductService productService = new ProductService();
 DeliveryService deliveryService = new DeliveryService();
 
+List<Delivery> deliveryList = deliveryService.selectDelivery(sUserId);
 List<Cart> cartItemList = new ArrayList<Cart>();
 User user = userService.findUser(sUserId);
-Delivery delivery = new Delivery();
 
 if (buyType.equals("cart")) {
 	cartItemList = cartService.viewCartByUserId(sUserId);
@@ -47,6 +47,10 @@ if (buyType.equals("cart")) {
 	Product product = productService.productDetail(Integer.parseInt(p_noStr));
 	cartItemList.add(new Cart(0,sUserId,Integer.parseInt(p_qtyStr), product));
 }
+
+
+
+
 %>
 
 
@@ -57,7 +61,7 @@ if (buyType.equals("cart")) {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel=stylesheet href="css/styles.css" type="text/css">
 <link rel=stylesheet href="css/shop.css" type="text/css">
- 
+
 <style type="text/css" media="screen">
 /*
 form > table tr td{
@@ -71,6 +75,28 @@ form > table tr td{
 		document.order_create_form.action = 'order_create_action.jsp';
 		document.order_create_form.submit();
 	}
+	function changeAddress(){
+        window.open("<%= request.getContextPath() %>/member/memberSsn.jsp", "member", "width=640, height=400"
+			<form>
+        table align=center width=80% border="0" cellpadding="0"
+			cellspacing="1" bgcolor="BBBBBB">
+			<caption style="text-align: left;">배송지 정보</caption>
+			<tr>
+				<td width=290 height=25 align=center bgcolor="E6ECDE" class=t1>받으시는 분</td>
+				<td width=112 height=25 align=center bgcolor="E6ECDE" class=t1>연락처</td>
+				<td width=166 height=25 align=center bgcolor="E6ECDE" class=t1>이메일</td>
+				<td width=50 height=25 align=center bgcolor="E6ECDE" class=t1>배송지</td>
+			</tr>
+			<tr>
+					<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_name()%></td>
+					<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_phone()%></td>
+					<td width=150 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_email()%></td>
+					<td width=150 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_address()%></td>
+			</tr>
+		</table>
+       		 </form>	
+        		)
+    }
 </script>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
@@ -134,7 +160,7 @@ form > table tr td{
 										<td width=290 height=26 align=center bgcolor="ffffff" class=t1><%=user.getUser_id()%></td>
 										<td width=112 height=26 align=center bgcolor="ffffff" class=t1><%=user.getUser_name()%></td>
 										<td width=166 height=26 align=center bgcolor="ffffff" class=t1><%=user.getUser_email()%></td>
-										<td width=50 height=26 align=center bgcolor="ffffff" class=t1></td>
+										<td width=50 height=26 align=center bgcolor="ffffff" class=t1><%=user.getUser_address()%></td>
 									</tr>
 								</table>
 
@@ -193,12 +219,17 @@ form > table tr td{
 										<td width=50 height=25 align=center bgcolor="E6ECDE" class=t1>배송지</td>
 									</tr>
 									<tr>
-										<tr>
-											<td width=150 height=26 align=center bgcolor="ffffff" class=t1><%=user.getUser_id()%></td>
-											<td width=152 height=26 align=center bgcolor="ffffff" class=t1><%=user.getUser_name()%></td>
-											<td width=126 height=26 align=center bgcolor="ffffff" class=t1><%=user.getUser_email()%></td>
-											<td width=170 height=26 align=center bgcolor="ffffff" class=t1><%=user.getUser_email()%></td>
-										</tr>
+											<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_name()%></td>
+											<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_phone()%></td>
+											<td width=150 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_email()%></td>
+											<td width=150 height=26 align=center bgcolor="ffffff" class=t1 >
+											<select name ="o_option" id="o_option">
+										  <option selected> 배송주소선택 </option>
+										  <%=for(Delivery delivery :deliveryList){ %>
+										  <option> <%=delivery.getD_address() %> </option>
+										  <%} %>
+										 </select></td>
+										<a href = "javascript:changeAddress()">배송지변경</a>
 									</tr>
 								</table>
 							</form>
@@ -208,7 +239,6 @@ form > table tr td{
 									<td align=center>&nbsp;&nbsp; <a
 										href="javascript:order_create_form_submit();" class=m1>구매/결재하기</a>
 										&nbsp;&nbsp;<a href=product_list.jsp class=m1>계속 쇼핑하기</a>
-
 									</td>
 								</tr>
 							</table></td>

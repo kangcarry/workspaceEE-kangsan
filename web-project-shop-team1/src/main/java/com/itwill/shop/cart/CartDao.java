@@ -178,6 +178,7 @@ public class CartDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		try {
 		pstmt = con.prepareStatement(CartSQL.CART_SELECT_BY_USERID);
 		pstmt.setString(1, user_Id);
 		rs = pstmt.executeQuery();
@@ -192,7 +193,15 @@ public class CartDao {
 							    		       rs.getString("p_desc"), 
 							    		       rs.getInt("p_click_count"),
 							    		       rs.getInt("category_no"))
-						));
+			
+					));
+		}
+		} finally {
+			if(con!=null) {
+				rs.close();
+				pstmt.close();
+				con.close();
+			}
 		}
 		return cartList;
 	}
@@ -204,7 +213,7 @@ public class CartDao {
 			Connection con = dataSource.getConnection();
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			
+			try {
 			pstmt = con.prepareStatement(CartSQL.CART_SELECT_BY_CARTNO);
 			pstmt.setInt(1, cart_no);
 			rs = pstmt.executeQuery();
@@ -220,6 +229,13 @@ public class CartDao {
 								    		       rs.getInt("p_click_count"),
 								    		       rs.getInt("category_no"))
 							));
+				}
+			}finally {
+				if(con!=null) {
+					rs.close();
+					pstmt.close();
+					con.close();
+				}
 			}
 			return cart;
 		}

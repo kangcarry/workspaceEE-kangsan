@@ -21,6 +21,12 @@ public class ProductService {
 		return productDao.selectByNo(p_no);
 	}
 	/*
+	 * 카테고리별 상품 보기
+	 */
+	public List<Product> productCategory(int category_no) throws Exception {
+		return productDao.selectByCategory(category_no);
+	}
+	/*
 	 * 상품 정보 수정
 	 */
 	public int productUpdate(Product product) throws Exception {
