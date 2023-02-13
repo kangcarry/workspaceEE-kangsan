@@ -208,35 +208,17 @@ form > table tr td{
 									cellspacing="1" bgcolor="BBBBBB">
 									<caption style="text-align: left;">배송지 정보</caption>
 									<tr>
-										<td width=290 height=25 align=center bgcolor="E6ECDE" class=t1>받으시는 분</td>
-										<td width=112 height=25 align=center bgcolor="E6ECDE" class=t1>연락처</td>
-										<td width=166 height=25 align=center bgcolor="E6ECDE" class=t1>이메일</td>
-										<td width=50 height=25 align=center bgcolor="E6ECDE" class=t1>배송지</td>
+										<td width=150 height=25 align=center bgcolor="E6ECDE" class=t1>받으시는 분</td>
+										<td width=150 height=25 align=center bgcolor="E6ECDE" class=t1>연락처</td>
+										<td width=160 height=25 align=center bgcolor="E6ECDE" class=t1>배송지</td>
 									</tr>
 									<tr>
-											<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_name()%></td>
-											<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_phone()%></td>
-											<td width=150 height=26 align=center bgcolor="ffffff" class=t1 ><%=user.getUser_email()%></td>
-											<td width=150 height=26 align=center bgcolor="ffffff" class=t1>
-                                 <select name="d_address">
-                                  <option value="0">배송지 선택</option>
-                                 <% for(Delivery delivery : deliveryList) { %>
-                                    <%int i = 0; %>
-                                 <option value="<%=i++%>" 
-                                 <% if(delivery.getD_address()==delivery.getD_address()){%>
-                                 selected
-                                 <%}%>>
-                                 <%=delivery.getD_address() %></option>
-                                    
-                                    <%} %>   
-                                    
-                                    
-                        
-                              
-                              
-                              </select>
-                              </td>
-											
+											<% for(Delivery delivery : deliveryList) { %>
+											<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=delivery.getD_name()%></td>
+											<td width=130 height=26 align=center bgcolor="ffffff" class=t1 ><%=delivery.getD_phone()%></td>
+											<td width=150 height=26 align=center bgcolor="ffffff" class=t1 ><%=delivery.getD_address()%></td>
+											<%}%>
+									</tr>
 								</table>
 							
 							</form>

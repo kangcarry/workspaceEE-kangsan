@@ -154,7 +154,7 @@
 
 	
 
-      <Context docBase="web-project-team1-shoekream" path="/web-project-team1-shoekream" reloadable="true" source="org.eclipse.jst.jee.server:web-project-team1-shoekream"/><Context docBase="web-project-team1-shoekream_kangsan" path="/web-project-team1-shoekream_kangsan" reloadable="true" source="org.eclipse.jst.jee.server:web-project-team1-shoekream_kangsan"/><Context docBase="web-project-team1-bookbread" path="/" reloadable="true" source="org.eclipse.jst.jee.server:web-project-team1-bookbread"/><Context docBase="web-project-team4-seoulbaguette" path="/web-project-team4-seoulbaguette" reloadable="true" source="org.eclipse.jst.jee.server:web-project-team4-seoulbaguette"/><Context docBase="web-project-team3-tomorrowhouse" path="/web-project-team3-tomorrowhouse" reloadable="true" source="org.eclipse.jst.jee.server:web-project-team3-tomorrowhouse"/></Host>
+      <Context docBase="guest_model1.1" path="/guest_model1.1" reloadable="true" source="org.eclipse.jst.jee.server:guest_model1.1"/></Host>
     </Engine>
   </Service>
 </Server>
