@@ -12,8 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itwill.guest.Guest;
 import com.itwill.guest.GuestService;
+import com.itwill.guest.controller.GuestErrorController;
 import com.itwill.guest.controller.GuestListController;
 import com.itwill.guest.controller.GuestMainController;
+import com.itwill.guest.controller.GuestModifyActionController;
+import com.itwill.guest.controller.GuestModifyFormController;
+import com.itwill.guest.controller.GuestRomoveActionController;
+import com.itwill.guest.controller.GuestWriteActionController;
+import com.itwill.guest.controller.GuestWriteFormController;
+import com.itwill.guest.controller.GuestviewController;
 
 /*
  * 1. 클라이언트(웹브라우져)의 모든요청을 받는 서블릿작성(front Controller)
@@ -57,17 +64,6 @@ public class DispatcherServlet extends HttpServlet {
 	}
 	
 	private void processRequest(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		/*
-		<<요청 url(command)>>
-		/guest_main.do  		
-		/guest_list.do			
-		/guest_view.do			
-		/guest_write_form.do	
-		/guest_write_action.do	
-		/guest_modify_form.do	
-		/guest_modify_action.do	
-		/guest_remove_action.do	
-		 */
 		
 		/*
 		 * 1.DispatcherServlet이 클라이언트의 요청URI를 사용해서 요청분석
@@ -116,13 +112,17 @@ public class DispatcherServlet extends HttpServlet {
 			controller=new GuestRomoveActionController();
 			/********************************************************/
 		}else {
-			forwardPath="forward:/WEB-INF/views/guest_error.jsp";
+			controller=new GuestErrorController();
 		}
+		
 		forwardPath=
 				controller.handleRequest(request, response);
 		/*
 		 * 3.DispatcherServlet이 forwardPath를 사용해서 forward 혹은 redirect를 한다.
 		 */
+		
+		
+		
 		
 		/************forward or redirect*************/
 		/*
