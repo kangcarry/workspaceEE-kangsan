@@ -154,7 +154,7 @@
 
 	
 
-      <Context docBase="guest_model2.0_controller_practice" path="/guest_model2.0_controller_practice" reloadable="true" source="org.eclipse.jst.jee.server:guest_model2.0_controller_practice"/></Host>
+      <Context docBase="guest_model2.0_controller_practice" path="/guest_model2.0_controller_practice" reloadable="true" source="org.eclipse.jst.jee.server:guest_model2.0_controller_practice"/><Context docBase="el_customtag_jstl" path="/el_customtag_jstl" reloadable="true" source="org.eclipse.jst.jee.server:el_customtag_jstl"/></Host>
     </Engine>
   </Service>
 </Server>
