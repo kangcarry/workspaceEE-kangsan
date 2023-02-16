@@ -9,7 +9,7 @@ import com.itwill.user.UserService;
 
 public class UserWriteActionController implements Controller{
 	private UserService userService;
-	public UserWriteActionController() {
+	public UserWriteActionController() throws Exception {
 		userService = new UserService();
 	}
 	
@@ -31,10 +31,22 @@ public class UserWriteActionController implements Controller{
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			forwardPath = "redirect:user_login_form.do";
 		}
-		
+		request.setCharacterEncoding("UTF-8");
+		String userId = request.getParameter("userId");
+		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		User newUser = new User(userId,password,name,email);
+		int createNo =  userService.create(newUser);
+		if(createNo==1) {
+			forwardPath = "redirect:user_login_form.do";
+		}else {
+			forwardPath = "forward:WEB-INF/views/user_write_form.jsp";
+		}
 	}catch (Exception e) {
+		e.printStackTrace();
+		forwardPath = "redirect:user_error_form.do";
 	}
-	
 	
 	return forwardPath;
 	}
