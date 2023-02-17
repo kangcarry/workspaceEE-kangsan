@@ -13,8 +13,6 @@ public class UserLogoutActionController implements Controller{
 		/****************login_check*******************/
 		
 		/*********************************************/
-		
-		forwardPath="redirect:user_main.do";
 		return forwardPath;
 	}
 

@@ -8,7 +8,10 @@ import com.itwill.user.User;
 import com.itwill.user.UserService;
 
 public class UserModifyActionController implements Controller {
-	
+	private UserService userService;
+	public UserModifyActionController() throws Exception {
+		userService = new UserService();
+	}
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		String forwardPath = "";
@@ -24,6 +27,22 @@ public class UserModifyActionController implements Controller {
 		5.성공: redirect:user_view.do forwardPath반환
 		  실패: forward:/WEB-INF/views/user_error.jsp  forwardPath반환
 		*/
+		try {
+			if (request.getMethod().equalsIgnoreCase("GET")) {
+				forwardPath = "redirect:user_main.do";
+			} else {
+				String userId = request.getParameter("userId");
+				String password = request.getParameter("password");
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				User updateUser = new User(userId, password, name, email);
+				userService.update(updateUser);
+				forwardPath = "redirect:user_view.do forwardPath";
+			}
+		} catch (Exception e) {
+			forwardPath = "redirect:user_error.do";
+			e.printStackTrace();
+		}
 		
 		return forwardPath;
 	}

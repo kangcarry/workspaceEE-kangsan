@@ -7,7 +7,10 @@ import com.itwill.summer.mvc.Controller;
 import com.itwill.user.UserService;
 
 public class UserRemoveActionController implements Controller {
-	
+	private UserService userService;
+	public UserRemoveActionController() throws Exception {
+		userService = new UserService();
+	}
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		String forwardPath = "";
@@ -22,7 +25,18 @@ public class UserRemoveActionController implements Controller {
 		4.성공: redirect:user_main.do  forwardPath반환
 		  실패: forward:/WEB-INF/views/user_error.jsp  forwardPath반환
 		*/
-		
+		try {
+			if (request.getMethod().equalsIgnoreCase("GET")) {
+				forwardPath = "redirect:user_main.do";
+			} else {
+				String userId = request.getParameter("userId");
+				userService.remove(userId);
+				forwardPath = "redirect:user_main.do";
+				}
+			}catch (Exception e) {
+			forwardPath = "redirect:user_error.do";
+			e.printStackTrace();
+		}
 		return forwardPath;
 	}
 

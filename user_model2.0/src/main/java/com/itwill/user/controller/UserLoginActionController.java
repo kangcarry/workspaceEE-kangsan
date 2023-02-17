@@ -19,14 +19,15 @@ public class UserLoginActionController implements Controller {
 
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		/*
-		 * 0 . GET방식요청일때 redirect:user_login_form.do forwardPath반환 2 . 파라메타 받기 3 .
-		 * UserService객체생성 4 . UserService.login() 메쏘드실행 0 : 아이디존재안함 ->
-		 * forward:/WEB-INF/views/user_login_form.jsp forwardPath반환 1 : 패쓰워드 불일치 ->
-		 * forward:/WEB-INF/views/user_login_form.jsp forwardPath반환 2 : 로그인성공(세션) ->
-		 * redirect:user_main.do forwardPath반환
+		 * 1 . GET방식요청일때 redirect:user_login_form.do forwardPath반환 
+		 * 2 . 파라메타 받기 
+		 * 3 .UserService객체생성 
+		 * 4 . UserService.login() 메쏘드실행
+		   0 : 아이디존재안함 ->forward:/WEB-INF/views/user_login_form.jsp forwardPath반환 
+		   1 : 패쓰워드 불일치 ->forward:/WEB-INF/views/user_login_form.jsp forwardPath반환 
+		   2 : 로그인성공(세션) ->  redirect:user_main.do forwardPath반환
 		 */
 		String forwardPath = "";
-		HttpSession session = request.getSession();
 		try {
 			if (request.getMethod().equalsIgnoreCase("GET")) {
 				forwardPath = "redirect:user_login_form.do";
@@ -35,7 +36,7 @@ public class UserLoginActionController implements Controller {
 				String password = request.getParameter("password");
 				int loginNo = userService.login(userId, password);
 				if (loginNo == 2) {
-					session.setAttribute("sUserId", userId);
+					request.setAttribute("userId", userId);
 					forwardPath = "redirect:user_login_form.do";
 				} else {
 					forwardPath = "forward:/WEB-INF/views/user_login_form.jsp";

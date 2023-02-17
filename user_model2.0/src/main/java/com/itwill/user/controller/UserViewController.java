@@ -20,11 +20,11 @@ public class UserViewController implements Controller{
 		/*
 		1. UserService객체생성
 		2. 세션의 sUserId를 사용해서 UserService.findUser()메쏘드호출
-		3. 반환된 User객체출력
+		3. 반환된 User객체를 request객체에 setAttribute한다
+		4. forward:/WEB-INF/views/user_view_form.jsp forwardPath를 반환
 		*/
 		try{
-			HttpSession session = request.getSession();
-			String sUserId = (String)session.getAttribute("sUserId");
+			String sUserId = (String)request.getAttribute("userId");
 			User user = userService.findUser(sUserId);
 			request.setAttribute("user", user);
 			forwardPath="forwardPath:/WEB-INF/views/user_view.jsp";
