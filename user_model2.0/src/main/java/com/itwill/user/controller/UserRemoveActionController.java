@@ -2,6 +2,7 @@ package com.itwill.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwill.summer.mvc.Controller;
 import com.itwill.user.UserService;
@@ -25,11 +26,13 @@ public class UserRemoveActionController implements Controller {
 		4.성공: redirect:user_main.do  forwardPath반환
 		  실패: forward:/WEB-INF/views/user_error.jsp  forwardPath반환
 		*/
+		HttpSession session = request.getSession();
 		try {
 			if (request.getMethod().equalsIgnoreCase("GET")) {
 				forwardPath = "redirect:user_main.do";
 			} else {
-				String userId = request.getParameter("userId");
+				String userId = (String)session.getAttribute("sUserId");
+				session.invalidate();
 				userService.remove(userId);
 				forwardPath = "redirect:user_main.do";
 				}

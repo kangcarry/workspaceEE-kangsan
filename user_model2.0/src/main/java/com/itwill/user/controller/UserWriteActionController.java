@@ -27,6 +27,7 @@ public class UserWriteActionController implements Controller{
 	
 	
 	String forwardPath="";	
+	String msg="";
 	try {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			forwardPath = "redirect:user_login_form.do";
@@ -36,11 +37,14 @@ public class UserWriteActionController implements Controller{
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
-		User newUser = new User(userId,password,name,email);
-		int createNo =  userService.create(newUser);
+		User fuser = new User(userId,password,name,email);
+		int createNo =  userService.create(fuser);
 		if(createNo==1) {
 			forwardPath = "redirect:user_login_form.do";
 		}else {
+			msg = "아이디가 중복입니다";
+			request.setAttribute("msg", msg);
+			request.setAttribute("fuser", fuser);
 			forwardPath = "forward:WEB-INF/views/user_write_form.jsp";
 		}
 	}catch (Exception e) {

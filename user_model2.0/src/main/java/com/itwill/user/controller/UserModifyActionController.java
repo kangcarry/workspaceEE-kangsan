@@ -2,6 +2,7 @@ package com.itwill.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwill.summer.mvc.Controller;
 import com.itwill.user.User;
@@ -27,20 +28,21 @@ public class UserModifyActionController implements Controller {
 		5.성공: redirect:user_view.do forwardPath반환
 		  실패: forward:/WEB-INF/views/user_error.jsp  forwardPath반환
 		*/
+		HttpSession session = request.getSession();
 		try {
 			if (request.getMethod().equalsIgnoreCase("GET")) {
 				forwardPath = "redirect:user_main.do";
 			} else {
-				String userId = request.getParameter("userId");
+				String userId = (String)session.getAttribute("sUserId");
 				String password = request.getParameter("password");
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
 				User updateUser = new User(userId, password, name, email);
 				userService.update(updateUser);
-				forwardPath = "redirect:user_view.do forwardPath";
+				forwardPath = "redirect:user_view.do";
 			}
 		} catch (Exception e) {
-			forwardPath = "redirect:user_error.do";
+			forwardPath = "forward:/WEB-INF/views/user_error.jsp";
 			e.printStackTrace();
 		}
 		

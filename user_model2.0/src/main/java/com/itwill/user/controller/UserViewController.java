@@ -14,7 +14,7 @@ public class UserViewController implements Controller{
 		userService = new UserService();
 	}
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		String forwardPath="";
+	
 		/****************login_check*******************/
 		/*********************************************/
 		/*
@@ -23,11 +23,13 @@ public class UserViewController implements Controller{
 		3. 반환된 User객체를 request객체에 setAttribute한다
 		4. forward:/WEB-INF/views/user_view_form.jsp forwardPath를 반환
 		*/
+		String forwardPath="";
+		HttpSession session = request.getSession();
 		try{
-			String sUserId = (String)request.getAttribute("userId");
+			String sUserId = (String)session.getAttribute("sUserId");
 			User user = userService.findUser(sUserId);
 			request.setAttribute("user", user);
-			forwardPath="forwardPath:/WEB-INF/views/user_view.jsp";
+			forwardPath="forward:/WEB-INF/views/user_view.jsp";
 		}catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "redirect:user_error_form.do";

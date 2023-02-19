@@ -1,7 +1,9 @@
+
 package com.itwill.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwill.summer.mvc.Controller;
 import com.itwill.user.User;
@@ -24,16 +26,20 @@ public class UserModifyFormController implements Controller{
 		3. 반환된 User객체를 request객체에 setAttribute한다
 		4. forward:/WEB-INF/views/user_modify_form.jsp forwardPath를 반환
 		*/
+		HttpSession session = request.getSession();
 		try{
-			String userId = (String)request.getAttribute("userId");
-			User user = userService.findUser(userId);
-			request.setAttribute("user", user);
-			forwardPath = "forward:/WEB-INF/views/user_modify_form.jsp";
+			if(session.getAttribute("sUserId")==null) {
+				forwardPath = "redirect:/user_main.do";
+			}else {
+				String userId = (String)session.getAttribute("sUserId");
+				User user = userService.findUser(userId);
+				request.setAttribute("user", user);
+				forwardPath = "forward:/WEB-INF/views/user_modify_form.jsp";
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "redirect:/user_error.do";
 		}
-		
 		
 		
 		return forwardPath;
