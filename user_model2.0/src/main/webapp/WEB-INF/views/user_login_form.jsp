@@ -1,21 +1,8 @@
 <%@page import="com.itwill.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-/******************로그인아이디존재안할때와,비빌번호 불일치시*********************
-1.request기본 객체로부터 애트리뷰트 이름 msg1,msg2,fuser 의 값뽑기
-2.request기본 객체로부터 뽑은애트리뷰트 객체 msg1(String),msg2(String),fuser(User) 객체출력
-**********************************************************************************/	
-String msg1 = (String)request.getAttribute("msg1");
-String msg2 = (String)request.getAttribute("msg2");
-User fuser = (User)request.getAttribute("fuser");
-if(msg1==null)msg1="";
-if(msg2==null)msg2="";
-if(fuser==null){
-	fuser=new User("","","","");
-}
-
-%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -88,13 +75,13 @@ if(fuser==null){
 											아이디</td>
 										<td width=490 align="left" bgcolor="ffffff"
 											style="padding-left: 10px"><input type="text"
-											style="width: 150" name="userId" value="<%=fuser.getUserId()%>">&nbsp;&nbsp;<font color="red"></font></td>
+											style="width: 150" name="userId" value="${fuser.userId}">&nbsp;&nbsp;<font color="red"></font></td>
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">비밀번호</td>
 										<td width=490 align="left" bgcolor="ffffff"
 											style="padding-left: 10px"><input type="password"
-											style="width: 150" name="password" value="<%=fuser.getPassword()%>">&nbsp;&nbsp;<font color="red"></font></td>
+											style="width: 150" name="password" value="${fuser.password}">&nbsp;&nbsp;<font color="red"></font></td>
 											
 									</tr>
 								</table>
